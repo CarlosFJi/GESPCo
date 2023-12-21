@@ -1,6 +1,41 @@
-# gespco
+# GESPCo
+### Gestor de ESPéctaculos y Carrera oficial.
 
-A new Flutter project.
+# Scaffolding
+    /lib
+        /assets
+        /src
+            /pages
+                /barcode_scanner
+                /crear_eventos
+                /extract
+                /home
+                /login
+                /register
+                /splash
+                /tickets
+            /services
+                /db
+                /signIn
+            /shared
+                /auth
+                /classes
+                /themes
+                /widgets
+                    /buttons
+                    /ticket
+    app.dart
+    main.dart
+    
+# Instalación
+    Se recomienda previamente configurar flutterfire
+    `bash
+flutterfire configure`
+
+Tras esto, lanzar: 
+`bash
+flutter pub get
+flutter run`
 
 ## Getting Started
 
