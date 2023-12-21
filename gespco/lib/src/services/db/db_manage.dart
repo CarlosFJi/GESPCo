@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:gespco/src/shared/classes/dataEvent.dart';
 import 'package:gespco/src/shared/classes/dataUser.dart';
 import 'package:gespco/src/shared/classes/dataTicket.dart';
@@ -13,12 +14,14 @@ class DBManage {
     final db = await factory.openDatabase('gespco.db');
     var sqliteVersion =
         (await db.rawQuery('select sqlite_version()')).first.values.first;
-    print(sqliteVersion);
-    if (db.query('users') == null) await createTables(db);
+    if (kDebugMode) sqliteVersion;
+    final checkDB = db.query('users').toString();
+    if (checkDB != "") await createTables(db);
 
     return db;
   }
 
+  // TODO: CREATE SQL_SENTENCES
   static Future<void> createTables(Database database) async {
     await database.execute(
         "CREATE TABLE users (id INTEGER PRIMARY KEY, name TEXT, photoURL TEXT, role TEXT);" +
@@ -64,7 +67,7 @@ class DBManage {
     final List<Map<String, dynamic>> userMap = await database.query("user");
 
     for (var n in userMap) {
-      print("____" + n['name']);
+      if (kDebugMode) print("____" + n['name']);
     }
 
     return List.generate(

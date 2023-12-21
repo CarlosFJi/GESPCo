@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:gespco/src/pages/home/home.dart';
+import 'package:gespco/src/pages/login/login.dart';
+import 'package:gespco/src/pages/register/register.dart';
 import 'package:gespco/src/pages/splash/splash.dart';
 import 'package:gespco/src/shared/themes/theme_colors.dart';
 
@@ -21,12 +23,17 @@ class App extends StatelessWidget {
       theme: ThemeData(
           primarySwatch: Colors.indigo, primaryColor: ThemeColors.primary),
       initialRoute: "/splash",
-      home: SplashPage(),
+      home: const SplashPage(),
       routes: {
-        "/splash": (context) => SplashPage(),
+        "/splash": (context) => const SplashPage(),
+        "/login": (context) => const LoginPage(),
+        "/register": (context) => const Register(),
+        "/home": (context) => const MyHomePage(title: "GESPCo"
+            // user: ModalRoute.of(context)!.settings.arguments as UserModel,
+            ),
         /*
-        "/login": (context) => LoginPage(),
-        "/register": (context) => Register(),
+
+
         "/home": (context) => HomePage(
               user: ModalRoute.of(context)!.settings.arguments as UserModel,
             ),

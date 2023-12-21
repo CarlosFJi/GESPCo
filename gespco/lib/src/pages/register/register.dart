@@ -1,10 +1,13 @@
+// ignore_for_file: library_private_types_in_public_api
+
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:gespco/src/shared/auth/auth_controller.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:gespco/src/shared/classes/dataUser.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:gespco/src/shared/widgets/rounded_btn/rounded_button.dart';
+import 'package:gespco/src/shared/widgets/buttons/rounded_btn/rounded_button.dart';
 
 const kTextFieldDecoration = InputDecoration(
   hintText: 'Enter a value',
@@ -24,6 +27,8 @@ const kTextFieldDecoration = InputDecoration(
 );
 
 class Register extends StatefulWidget {
+  const Register({super.key});
+
   @override
   _RegistrationScreenState createState() => _RegistrationScreenState();
 }
@@ -40,20 +45,26 @@ class _RegistrationScreenState extends State<Register> {
     try {
       final newUser = await _auth.createUserWithEmailAndPassword(
           email: email, password: password);
-      Future.delayed(Duration(seconds: 1));
-      print("Nuevo Usuario: $newUser");
-      print("Imagen: ${dotenv.get('IMAGE_PROFILE_DEFAULT')}");
-      final userCheck = UserModel(
-          name: email,
-          photoURL: "${dotenv.get('IMAGE_PROFILE_DEFAULT')}",
-          role: "user");
+      Future.delayed(const Duration(seconds: 1));
 
-      controller.setUser(context, userCheck);
+      if (kDebugMode) {
+        print("Nuevo Usuario: $newUser");
+        print("Imagen: ${dotenv.get('IMAGE_PROFILE_DEFAULT')}");
+      }
+      final defaultImage = dotenv.env['IMAGE_PROFILE_DEFAULT'];
+      final userCheck =
+          UserModel(name: email, photoURL: "$defaultImage", role: "user");
       // TODO: Register user on ddbb
-      print("REGISTER $userCheck");
-      Navigator.pushReplacementNamed(context, '/home', arguments: userCheck);
+      if (context.mounted) {
+        controller.setUser(context, userCheck);
+        if (kDebugMode) print("REGISTER $userCheck");
+        Navigator.pushReplacementNamed(context, '/home', arguments: userCheck);
+      }
     } catch (e) {
-      print(e);
+      // TODO: Pantalla de error
+      if (kDebugMode) {
+        print("ERROR $e");
+      }
     }
     setState(() {
       showSpinner = false;
@@ -70,13 +81,13 @@ class _RegistrationScreenState extends State<Register> {
         Align(
           alignment: Alignment.topLeft,
           child: ElevatedButton(
-              child: Icon(Icons.arrow_back),
+              child: const Icon(Icons.arrow_back),
               onPressed: () => Navigator.of(context).pop(true)),
         ),
         ModalProgressHUD(
           inAsyncCall: showSpinner,
           child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 24.0),
+            padding: const EdgeInsets.symmetric(horizontal: 24.0),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -90,7 +101,7 @@ class _RegistrationScreenState extends State<Register> {
                     },
                     decoration: kTextFieldDecoration.copyWith(
                         hintText: 'Enter your email')),
-                SizedBox(
+                const SizedBox(
                   height: 8.0,
                 ),
                 TextField(
@@ -102,7 +113,7 @@ class _RegistrationScreenState extends State<Register> {
                     },
                     decoration: kTextFieldDecoration.copyWith(
                         hintText: 'Enter your Password')),
-                SizedBox(
+                const SizedBox(
                   height: 24.0,
                 ),
                 RoundedButton(
