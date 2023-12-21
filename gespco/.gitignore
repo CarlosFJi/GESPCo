@@ -38,6 +38,13 @@ app.*.symbols
 app.*.map.json
 
 # Android Studio will place build artifacts here
+/android/
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+# Linux, MacOs, Windows, Web, IOS Files
+/linux/
+/macos/
+/windows/
+/ios/
