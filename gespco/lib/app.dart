@@ -4,16 +4,17 @@ import 'package:gespco/src/pages/home/home.dart';
 import 'package:gespco/src/pages/login/login.dart';
 import 'package:gespco/src/pages/register/register.dart';
 import 'package:gespco/src/pages/splash/splash.dart';
+import 'package:gespco/src/shared/classes/dataUser.dart';
 import 'package:gespco/src/shared/themes/theme_colors.dart';
 
 class App extends StatelessWidget {
-  App() {
+  App({super.key}) {
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitDown,
       DeviceOrientation.portraitUp,
     ]);
     SystemChrome.setSystemUIOverlayStyle(
-        SystemUiOverlayStyle(statusBarColor: ThemeColors.background));
+        const SystemUiOverlayStyle(statusBarColor: ThemeColors.background));
   }
 
   @override
@@ -28,8 +29,8 @@ class App extends StatelessWidget {
         "/splash": (context) => const SplashPage(),
         "/login": (context) => const LoginPage(),
         "/register": (context) => const Register(),
-        "/home": (context) => const MyHomePage(title: "GESPCo"
-            // user: ModalRoute.of(context)!.settings.arguments as UserModel,
+        "/home": (context) => MyHomePage(
+              user: ModalRoute.of(context)!.settings.arguments as UserModel,
             ),
         /*
 

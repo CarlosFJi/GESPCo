@@ -1,40 +1,21 @@
-import 'package:animated_card/animated_card.dart';
 import 'package:flutter/material.dart';
 import 'package:gespco/src/shared/themes/font_style.dart';
 import 'package:gespco/src/shared/themes/theme_colors.dart';
-import 'package:gespco/src/shared/widgets/ticket/ticketInfo.dart';
 import 'package:gespco/src/shared/widgets/ticket/ticketList.dart';
 
-class TicketsPage extends StatefulWidget {
-  const TicketsPage({Key? key}) : super(key: key);
+class ExtractPage extends StatefulWidget {
+  const ExtractPage({Key? key}) : super(key: key);
 
   @override
-  _TicketsPageState createState() => _TicketsPageState();
+  _ExtractPageState createState() => _ExtractPageState();
 }
 
-class _TicketsPageState extends State<TicketsPage> {
+class _ExtractPageState extends State<ExtractPage> {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Column(
         children: [
-          SizedBox(
-            height: 80,
-            child: Stack(
-              children: [
-                Container(
-                  height: 40,
-                  color: ThemeColors.primary,
-                ),
-                AnimatedCard(
-                  direction: AnimatedCardDirection.left,
-                  child: TicketInfoWidget(
-                    key: UniqueKey(),
-                  ),
-                ),
-              ],
-            ),
-          ),
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 24),
             child: Row(

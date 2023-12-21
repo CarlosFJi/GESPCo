@@ -55,7 +55,7 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyALmDYd0i08X7TtFKN8VllB1qzsJZ3IAxM',
-    appId: '1:994700819032:android:08f8cdbf5f91933660282d',
+    appId: '1:994700819032:android:da46e3457ec6896860282d',
     messagingSenderId: '994700819032',
     projectId: 'gespco-cfj5b1',
     storageBucket: 'gespco-cfj5b1.appspot.com',
@@ -63,19 +63,21 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions ios = FirebaseOptions(
     apiKey: 'AIzaSyDh0yeqaV7NGx_hiNTL5cLjlOiRpysYsQE',
-    appId: '1:994700819032:ios:3f5f6de8cf630b8160282d',
+    appId: '1:994700819032:ios:dbdf60d3ec0223dc60282d',
     messagingSenderId: '994700819032',
     projectId: 'gespco-cfj5b1',
     storageBucket: 'gespco-cfj5b1.appspot.com',
+    iosClientId: '994700819032-uqobun3d6oh5dcs0pka9ogufg3b6li01.apps.googleusercontent.com',
     iosBundleId: 'com.example.gespco',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
     apiKey: 'AIzaSyDh0yeqaV7NGx_hiNTL5cLjlOiRpysYsQE',
-    appId: '1:994700819032:ios:3f5f6de8cf630b8160282d',
+    appId: '1:994700819032:ios:d93425b544f3d6b760282d',
     messagingSenderId: '994700819032',
     projectId: 'gespco-cfj5b1',
     storageBucket: 'gespco-cfj5b1.appspot.com',
-    iosBundleId: 'com.example.gespco',
+    iosClientId: '994700819032-deone7p116lefpomnllmq0lv278gu5sg.apps.googleusercontent.com',
+    iosBundleId: 'com.example.gespco.RunnerTests',
   );
 }
