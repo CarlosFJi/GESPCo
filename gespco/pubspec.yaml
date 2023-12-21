@@ -40,6 +40,28 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
+  google_fonts: ^6.1.0
+  firebase_core: ^2.24.2
+  google_sign_in: ^6.1.6
+  google_sign_in_web: ^0.12.1
+  shared_preferences: ^2.2.2
+  google_ml_kit: ^0.16.3
+  google_mlkit_commons: ^0.6.1
+  camera: ^0.10.5+5
+  image_picker: ^1.0.4
+  font_awesome_flutter: ^10.6.0
+  flutter_masked_text2: ^0.9.1
+  animated_card: ^2.0.0
+  firebase_auth: ^4.15.0
+  qr_flutter: ^4.1.0
+  modal_progress_hud_nsn: ^0.4.0
+  flutter_dotenv: ^5.1.0 
+  dropdown_button2: ^2.3.9 
+  sqflite: ^2.3.0
+  sqflite_common_ffi: ^2.3.1
+  sqflite_common_ffi_web: ^0.4.2+2
+  path: ^1.8.3
+  uuid: ^4.2.2
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
   # activated in the `analysis_options.yaml` file located at the root of your
@@ -52,22 +74,13 @@ dev_dependencies:
 
 # The following section is specific to Flutter packages.
 flutter:
-
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
   uses-material-design: true
 
-  # To add assets to your application, add an assets section, like this:
-  # assets:
-  #   - images/a_dot_burr.jpeg
-  #   - images/a_dot_ham.jpeg
-
-  # An image asset can refer to one or more resolution-specific "variants", see
-  # https://flutter.dev/assets-and-images/#resolution-aware
-
-  # For details regarding adding assets from package dependencies, see
-  # https://flutter.dev/assets-and-images/#from-packages
+  assets:
+    - .env
 
   # To add custom fonts to your application, add a fonts section here,
   # in this "flutter" section. Each entry in this list should have a
