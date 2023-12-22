@@ -20,7 +20,7 @@ class MyHomePage extends StatefulWidget {
 final List<String> items = ["Cerrar sesión"];
 
 class _HomePageState extends State<MyHomePage> {
-  final pages = [TicketsPage(), ExtractPage()];
+  final pages = [const TicketsPage(), const ExtractPage()];
   final controller = HomeController();
 
   // TODO: Insertar usuarios - obtener tickets - mostrar eventos y disponibilidad
@@ -49,7 +49,7 @@ class _HomePageState extends State<MyHomePage> {
                     style: FontStyles.titleRegular,
                     children: [
                       TextSpan(
-                          text: "${widget.user.name}",
+                          text: widget.user.name,
                           style: FontStyles.titleBoldBackground)
                     ]),
               ),

@@ -17,7 +17,7 @@ class SocialButton extends StatelessWidget {
         decoration: BoxDecoration(
             color: ThemeColors.shape,
             borderRadius: BorderRadius.circular(9),
-            border: Border.fromBorderSide(
+            border: const Border.fromBorderSide(
               BorderSide(
                 color: ThemeColors.stroke,
               ),

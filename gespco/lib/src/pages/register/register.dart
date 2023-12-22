@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:gespco/src/shared/auth/auth_controller.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:gespco/src/shared/classes/dataUser.dart';
+import 'package:gespco/src/shared/environment/environment.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:gespco/src/shared/widgets/buttons/rounded_btn/rounded_button.dart';
@@ -49,11 +50,11 @@ class _RegistrationScreenState extends State<Register> {
 
       if (kDebugMode) {
         print("Nuevo Usuario: $newUser");
-        print("Imagen: ${dotenv.get('IMAGE_PROFILE_DEFAULT')}");
+        print("Imagen: ${Environment.imageDefault}");
       }
-      final defaultImage = dotenv.env['IMAGE_PROFILE_DEFAULT'];
+      final defaultImage = Environment.imageDefault;
       final userCheck =
-          UserModel(name: email, photoURL: "$defaultImage", role: "user");
+          UserModel(name: email, photoURL: defaultImage, role: "user");
       // TODO: Register user on ddbb
       if (context.mounted) {
         controller.setUser(context, userCheck);
