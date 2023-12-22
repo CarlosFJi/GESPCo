@@ -7,7 +7,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:gespco/src/shared/classes/dataUser.dart';
 import 'package:gespco/src/shared/environment/environment.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:gespco/src/shared/widgets/buttons/rounded_btn/rounded_button.dart';
 
 const kTextFieldDecoration = InputDecoration(

@@ -27,19 +27,6 @@ class _LoginPageState extends State<LoginPage> {
               height: size.height * 0.36,
               color: ThemeColors.primary,
             ),
-            /* TODO: Include logo
-            Positioned(
-                top: 40,
-                left: 0,
-                right: 0,
-                child: Image.asset(
-
-                  AppImages.person,
-                  width: 208,
-                  height: 300,
-                  
-                )),
-                */
             Positioned(
                 top: size.height * 0.1,
                 left: 0,
@@ -60,8 +47,7 @@ class _LoginPageState extends State<LoginPage> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Padding(
-                        padding: const EdgeInsets.only(
-                            top: 0.4, left: 70, right: 70),
+                        padding: EdgeInsets.only(top: 0.4, left: 70, right: 70),
                         child: Text(
                           "Gestor de Espectáculos y Carrera oficial",
                           textAlign: TextAlign.center,
@@ -80,7 +66,7 @@ class _LoginPageState extends State<LoginPage> {
                       Padding(
                           padding: const EdgeInsets.only(top: 20, left: 0),
                           child: MaterialButton(
-                            child: const Text("Regístrate aquí"),
+                            child: Text("Regístrate aquí"),
                             onPressed: () =>
                                 Navigator.pushNamed(context, "/register"),
                           ))

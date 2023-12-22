@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:gespco/src/pages/barcode_scanner/barcode_scanner.dart';
 import 'package:gespco/src/pages/home/home.dart';
 import 'package:gespco/src/pages/login/login.dart';
 import 'package:gespco/src/pages/register/register.dart';
@@ -32,17 +33,13 @@ class App extends StatelessWidget {
         "/home": (context) => MyHomePage(
               user: ModalRoute.of(context)!.settings.arguments as UserModel,
             ),
+        "/barcode_scanner": (context) => const BarcodeScanner()
         /*
-
-
-        "/home": (context) => HomePage(
-              user: ModalRoute.of(context)!.settings.arguments as UserModel,
-            ),
-        "/crear_eventos": (context) => InsertTicketPage(
+                "/crear_eventos": (context) => InsertTicketPage(
             barcode: ModalRoute.of(context) != null
                 ? ModalRoute.of(context)!.settings.arguments.toString()
                 : null),
-        "/barcode_scanner": (context) => BarcodeScannerPage()
+
         */
       },
     );

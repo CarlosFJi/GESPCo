@@ -49,6 +49,6 @@ app.*.map.json
 /windows/
 /ios/
 *.env
-
+so
 # Firebase Options
 /lib/firebase_options.dart

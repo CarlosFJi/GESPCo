@@ -6,7 +6,7 @@
         /assets
         /src
             /pages
-                /barcode_scanner
+                /barcode_scanner`´`
                 /crear_eventos
                 /extract
                 /home

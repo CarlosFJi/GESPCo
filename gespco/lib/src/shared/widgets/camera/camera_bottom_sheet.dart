@@ -37,7 +37,7 @@ class CameraBottomSheet extends StatelessWidget {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  const SizedBox(
+                  SizedBox(
                     height: 40,
                   ),
                   Text.rich(

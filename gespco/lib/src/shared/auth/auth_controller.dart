@@ -25,8 +25,8 @@ class AuthController {
       setUser(context, UserModel.fromJson(json));
       return;
     } else {
-      Future.delayed(Duration(milliseconds: 630));
-      Navigator.pushReplacementNamed(context, "/login");
+      Future.delayed(const Duration(seconds: 2));
+      await Navigator.pushReplacementNamed(context, "/login");
     }
   }
 
