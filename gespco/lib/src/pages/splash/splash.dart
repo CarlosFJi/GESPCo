@@ -15,7 +15,7 @@ class SplashPage extends StatelessWidget {
       backgroundColor: ThemeColors.background,
       body: Stack(
         children: [
-          Center(child: Text("Bienvenido a GESPCo.")),
+          Center(widthFactor: 60, child: Text("Bienvenido a GESPCo.")),
           // TODO: Añadir logo
         ],
       ),

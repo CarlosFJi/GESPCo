@@ -17,7 +17,6 @@ class DBManage {
     if (kDebugMode) sqliteVersion;
     final checkDB = db.query('users').toString();
     if (checkDB != "") await createTables(db);
-
     return db;
   }
 

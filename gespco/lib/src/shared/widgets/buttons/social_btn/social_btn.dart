@@ -35,25 +35,18 @@ class SocialButton extends StatelessWidget {
                   ),
                 ),
                 Container(
-                  height: 40,
+                  height: 140,
                   width: 1,
                   color: ThemeColors.stroke,
                 )
               ],
             ),
             Expanded(
-              flex: 1,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Positioned(
-                    left: 0,
-                    child: Text(
-                      "Entrar con Google",
-                      style: FontStyles.buttonGray,
-                    ),
-                  )
-                ],
+              flex: 15,
+              child: Text(
+                "Entrar con Google",
+                textAlign: TextAlign.center,
+                style: FontStyles.buttonGray,
               ),
             ),
           ],

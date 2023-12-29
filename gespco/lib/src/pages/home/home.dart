@@ -86,9 +86,9 @@ class _HomePageState extends State<MyHomePage> {
                     value: selectedValue,
                     onChanged: (value) {
                       setState(() {
+                        controller.sigOut(context);
                         // TODO: Cerrar sesión
                         if (kDebugMode) print("Seleccionado: $value");
-                        //if (selectedValue == "Cerrar sesión")
                       });
                     },
                     dropdownStyleData: DropdownStyleData(

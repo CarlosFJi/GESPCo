@@ -35,5 +35,6 @@ class LoginController {
 
   Future<void> signOut(BuildContext context) async {
     await GoogleSignIn().signOut();
+    if (context.mounted) authController.signOut(context);
   }
 }

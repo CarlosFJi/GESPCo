@@ -77,7 +77,7 @@ class _RegistrationScreenState extends State<Register> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: Stack(children: <Widget>[
+      body: Stack(children: [
         Align(
           alignment: Alignment.topLeft,
           child: ElevatedButton(

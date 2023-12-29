@@ -24,11 +24,11 @@ class _LoginPageState extends State<LoginPage> {
           child: Stack(children: [
             Container(
               width: size.width,
-              height: size.height * 0.36,
+              height: size.height * 0.3,
               color: ThemeColors.primary,
             ),
             Positioned(
-                top: size.height * 0.1,
+                top: size.height * 0.02,
                 left: 0,
                 right: 0,
                 child: const SizedBox(
@@ -39,7 +39,7 @@ class _LoginPageState extends State<LoginPage> {
                       child: Text("GESPCo"),
                     ))),
             Positioned(
-                top: size.height * 0.30,
+                top: size.height * 0.20,
                 left: 0,
                 right: 0,
                 child: Column(
@@ -47,7 +47,8 @@ class _LoginPageState extends State<LoginPage> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Padding(
-                        padding: EdgeInsets.only(top: 0.4, left: 70, right: 70),
+                        padding:
+                            const EdgeInsets.only(top: 0, left: 70, right: 70),
                         child: Text(
                           "Gestor de Espectáculos y Carrera oficial",
                           textAlign: TextAlign.center,
@@ -57,20 +58,20 @@ class _LoginPageState extends State<LoginPage> {
                       // Image.asset(AppImages.logomini),
                       Padding(
                           padding: const EdgeInsets.only(
-                              top: 130, left: 0, right: 0),
+                              top: 120, left: 0, right: 0),
                           child: SocialButton(
                             onTap: () {
                               controller.signIn(context);
                             },
                           )),
                       Padding(
-                          padding: const EdgeInsets.only(top: 20, left: 0),
+                          padding: const EdgeInsets.only(top: 10, left: 0),
                           child: MaterialButton(
-                            child: Text("Regístrate aquí"),
+                            child: const Text("Regístrate aquí"),
                             onPressed: () =>
                                 Navigator.pushNamed(context, "/register"),
                           ))
-                    ])),
+                    ]))
           ])),
     );
   }
