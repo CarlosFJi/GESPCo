@@ -10,7 +10,7 @@ packages:
     source: hosted
     version: "1.3.16"
   animated_card:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: animated_card
       sha256: "486e1c67ec787dfae4fb92e9af0ca5438d6f805d797bb58d29542f791431ea97"
@@ -42,7 +42,7 @@ packages:
     source: hosted
     version: "2.1.1"
   camera:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: camera
       sha256: "7fa53bb1c2059e58bf86b7ab506e3b2a78e42f82d365b44b013239b975a166ef"
@@ -138,7 +138,7 @@ packages:
     source: hosted
     version: "0.16.3+2"
   dropdown_button2:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: dropdown_button2
       sha256: b0fe8d49a030315e9eef6c7ac84ca964250155a6224d491c1365061bc974a9e1
@@ -202,7 +202,7 @@ packages:
     source: hosted
     version: "0.9.3+1"
   firebase_auth:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: firebase_auth
       sha256: "88f88d541a2c1903c023355e13d077835573a200bbf57e12a6a2c24bf99665a1"
@@ -226,7 +226,7 @@ packages:
     source: hosted
     version: "5.8.12"
   firebase_core:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: firebase_core
       sha256: "96607c0e829a581c2a483c658f04e8b159964c3bae2730f73297070bc85d40bb"
@@ -254,8 +254,16 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_cupertino_date_picker_fork:
+    dependency: "direct main"
+    description:
+      name: flutter_cupertino_date_picker_fork
+      sha256: edc20d4045a7cb8c75503a73b103ba30d52e1a2c7bc1bff5b4f39dc356b67ee8
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.7"
   flutter_dotenv:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: flutter_dotenv
       sha256: "9357883bdd153ab78cbf9ffa07656e336b8bbb2b5a3ca596b0b27e119f7c7d77"
@@ -271,7 +279,7 @@ packages:
     source: hosted
     version: "2.0.3"
   flutter_masked_text2:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: flutter_masked_text2
       sha256: "5ccf6f1f8b7b7a8025e3fbaea48bff0aa7e7e9512c723e26138a0b24f31ca4d8"
@@ -297,7 +305,7 @@ packages:
     source: sdk
     version: "0.0.0"
   font_awesome_flutter:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: font_awesome_flutter
       sha256: "52671aea66da73b58d42ec6d0912b727a42248dd9a7c76d6c20f275783c48c08"
@@ -305,7 +313,7 @@ packages:
     source: hosted
     version: "10.6.0"
   google_fonts:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: google_fonts
       sha256: f0b8d115a13ecf827013ec9fc883390ccc0e87a96ed5347a3114cac177ef18e8
@@ -321,7 +329,7 @@ packages:
     source: hosted
     version: "0.3.0+2"
   google_ml_kit:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: google_ml_kit
       sha256: "208c22edf0e6c6621f4e95881e8fd08f602728f5c60ef8d845a817a948555b3e"
@@ -337,7 +345,7 @@ packages:
     source: hosted
     version: "0.10.0"
   google_mlkit_commons:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: google_mlkit_commons
       sha256: "046586b381cdd139f7f6a05ad6998f7e339d061bd70158249907358394b5f496"
@@ -441,7 +449,7 @@ packages:
     source: hosted
     version: "0.9.0"
   google_sign_in:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: google_sign_in
       sha256: "0b8787cb9c1a68ad398e8010e8c8766bfa33556d2ab97c439fb4137756d7308f"
@@ -473,7 +481,7 @@ packages:
     source: hosted
     version: "2.4.3"
   google_sign_in_web:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: google_sign_in_web
       sha256: "38e6ec2a7d65ec34bb7ae2db64a1d042b021330433b999e87330d45c688ff549"
@@ -497,7 +505,7 @@ packages:
     source: hosted
     version: "4.0.2"
   image_picker:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: image_picker
       sha256: fc712337719239b0b6e41316aa133350b078fa39b6cbd706b61f3fd421b03c77
@@ -609,7 +617,7 @@ packages:
     source: hosted
     version: "1.0.4"
   modal_progress_hud_nsn:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: modal_progress_hud_nsn
       sha256: "0b0d95e5ce3e1884390624fbe79fcf90d7de10abe05d26c0e276c25e7130e3e0"
@@ -617,7 +625,7 @@ packages:
     source: hosted
     version: "0.4.0"
   path:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: path
       sha256: "8829d8a55c13fc0e37127c29fedf290c102f4e40ae94ada574091fe0ff96c917"
@@ -721,7 +729,7 @@ packages:
     source: hosted
     version: "3.0.1"
   qr_flutter:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: qr_flutter
       sha256: "5095f0fc6e3f71d08adef8feccc8cea4f12eec18a2e31c2e8d82cb6019f4b097"
@@ -729,7 +737,7 @@ packages:
     source: hosted
     version: "4.1.0"
   shared_preferences:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: shared_preferences
       sha256: "81429e4481e1ccfb51ede496e916348668fd0921627779233bd24cc3ff6abd02"
@@ -806,7 +814,7 @@ packages:
     source: hosted
     version: "7.0.0"
   sqflite:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: sqflite
       sha256: "591f1602816e9c31377d5f008c2d9ef7b8aca8941c3f89cc5fd9d84da0c38a9a"
@@ -822,7 +830,7 @@ packages:
     source: hosted
     version: "2.5.0+2"
   sqflite_common_ffi:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: sqflite_common_ffi
       sha256: "873677ee78738a723d1ded4ccb23980581998d873d30ee9c331f6a81748663ff"
@@ -830,7 +838,7 @@ packages:
     source: hosted
     version: "2.3.1"
   sqflite_common_ffi_web:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: sqflite_common_ffi_web
       sha256: "3d4b550a09fda9eb0a9ce3bd98c8080f57b2cc1f4b19e844290e82843e73b63d"
@@ -910,7 +918,7 @@ packages:
     source: hosted
     version: "1.3.2"
   uuid:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: uuid
       sha256: "22c94e5ad1e75f9934b766b53c742572ee2677c56bc871d850a57dad0f82127f"
