@@ -5,7 +5,7 @@ import 'package:gespco/src/shared/themes/theme_colors.dart';
 import 'package:gespco/src/shared/widgets/ticket/ticket_controller.dart';
 
 class TicketInfoWidget extends StatefulWidget {
-  TicketInfoWidget({Key? key}) : super(key: key);
+  const TicketInfoWidget({Key? key}) : super(key: key);
 
   @override
   _InfoWidgetState createState() => _InfoWidgetState();

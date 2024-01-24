@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gespco/src/pages/login/login_controller.dart';
+import 'package:gespco/src/shared/auth/auth_controller.dart';
 import 'package:gespco/src/shared/themes/font_style.dart';
 import 'package:gespco/src/shared/themes/theme_colors.dart';
 import 'package:gespco/src/shared/widgets/buttons/social_btn/social_btn.dart';
@@ -13,9 +14,12 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   final controller = LoginController();
+  final auth = AuthController();
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+
     return Scaffold(
       backgroundColor: ThemeColors.background,
       body: SizedBox(

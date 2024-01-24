@@ -15,9 +15,8 @@ class App extends StatelessWidget {
       DeviceOrientation.portraitUp,
     ]);
     SystemChrome.setSystemUIOverlayStyle(
-        const SystemUiOverlayStyle(statusBarColor: ThemeColors.background));
+        SystemUiOverlayStyle(statusBarColor: ThemeColors.background));
   }
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -25,7 +24,6 @@ class App extends StatelessWidget {
       theme: ThemeData(
           primarySwatch: Colors.indigo, primaryColor: ThemeColors.primary),
       initialRoute: "/splash",
-      home: const SplashPage(),
       routes: {
         "/splash": (context) => const SplashPage(),
         "/login": (context) => const LoginPage(),
@@ -33,7 +31,8 @@ class App extends StatelessWidget {
         "/home": (context) => MyHomePage(
               user: ModalRoute.of(context)!.settings.arguments as UserModel,
             ),
-        "/barcode_scanner": (context) => const BarcodeScanner()
+        "/barcode_scanner": (context) => const BarcodeScanner(),
+
         /*
                 "/crear_eventos": (context) => InsertTicketPage(
             barcode: ModalRoute.of(context) != null
@@ -45,5 +44,3 @@ class App extends StatelessWidget {
     );
   }
 }
-
-class AppColors {}

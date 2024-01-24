@@ -31,8 +31,8 @@ class _HomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     final currentPage = ModalRoute.of(context)!.settings.name;
+
     if (currentPage == '/home') {
-      Future.delayed(const Duration(seconds: 2));
       operations.hashCode;
     }
     return Scaffold(
@@ -86,7 +86,7 @@ class _HomePageState extends State<MyHomePage> {
                     value: selectedValue,
                     onChanged: (value) {
                       setState(() {
-                        controller.sigOut(context);
+                        controller.signOut(context);
                         // TODO: Cerrar sesión
                         if (kDebugMode) print("Seleccionado: $value");
                       });
@@ -131,7 +131,8 @@ class _HomePageState extends State<MyHomePage> {
                 )),
             GestureDetector(
               onTap: () async {
-                await Navigator.pushNamed(context, "/barcode_scanner");
+                // await Navigator.pushNamed(context, "/barcode_scanner");
+                await Navigator.pushNamed(context, "/crear_eventos");
                 setState(() {});
               },
               child: Container(

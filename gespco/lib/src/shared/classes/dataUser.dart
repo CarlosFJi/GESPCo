@@ -1,15 +1,15 @@
 import 'dart:convert';
 import 'package:uuid/uuid.dart';
 
-final uuid = Uuid();
+const uuid = Uuid();
 
 class UserModel {
   final String id = uuid.v4();
-  final String name;
+  final String? name;
   final String? photoURL;
-  final String? role;
+  final int? role;
 
-  UserModel({id, required this.name, this.photoURL, this.role});
+  UserModel({id, this.name, this.photoURL, this.role});
 
   factory UserModel.fromMap(Map<String, dynamic> map) {
     return UserModel(

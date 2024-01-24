@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:flutter/foundation.dart';
+
 class DataEvent {
   Context context;
   // List<Graph> graph;
@@ -14,6 +16,47 @@ class DataEvent {
       "context": context,
     };
   }
+
+  Future<List<DataEvent>> obtenerDatos() async {
+    // TODO: Cabesa, llamada a API
+    /*
+    final httpsCallable callable = FirebaseFunctions.instance.httpsCallable(
+      'nombreDeTuCloudFunction', // Reemplaza con el nombre real de tu Cloud Function
+    );
+
+    final HttpsCallableResult result = await callable();
+
+    final List<dynamic> responseData = result.data;
+
+    return responseData.map((json) => DataEvent.fromJson(json)).toList();
+      */
+    return {} as List<DataEvent>;
+  }
+
+  void main() async {
+    // TODO: Llamada a BB.DD
+    if (kDebugMode) {
+      // Crear un nuevo contexto
+      Context context = {"000", "testDes", "test"} as Context;
+      // Crear un nuevo evento con el contexto creado
+      DataEvent nuevoEvento = DataEvent(context: context);
+      // Acceder a los atributos del evento y el contexto
+      print("ID del contexto: ${nuevoEvento.context.id}");
+      print("Descripción del contexto: ${nuevoEvento.context.description}");
+      print("Title: ${nuevoEvento.context.title}");
+    } else {
+      List<DataEvent> listaEventos = await obtenerDatos();
+      // Ahora puedes trabajar con la lista de eventos obtenida desde BigQuery
+      for (DataEvent evento in listaEventos) {
+        print('Nombre del title: ${evento.context.title}');
+        print('Fecha del description: ${evento.context.description}');
+        print('----------------------');
+      }
+    }
+
+    // print("Latitud del contexto: ${nuevoEvento.context.latitud}");
+    // print("Longitud del contexto: ${nuevoEvento.context.longitud}");
+  }
 }
 
 class Context {
@@ -21,6 +64,11 @@ class Context {
   String description;
   String title;
 
+  Context({
+    required this.id,
+    required this.title,
+    required this.description,
+  });
   /*
   String numAsist;
   String c;
@@ -64,13 +112,13 @@ class Context {
   String frequency;
   String interval;
   String audience;
-*/
+
   Context({
     required this.id,
     required this.title,
     required this.description,
 
-    /*required this.c,
+    required this.c,
     required this.dcterms,
     required this.geo,
     required this.loc,
@@ -111,8 +159,8 @@ class Context {
     required this.frequency,
     required this.interval,
     required this.audience,
-    */
   });
+  */
 }
 
 class Graph {
@@ -186,6 +234,7 @@ class References {
   });
 }
 
+// Un array de Location nos permite crear una carrera oficial
 class Location {
   double latitude;
   double longitude;

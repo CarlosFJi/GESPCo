@@ -1,15 +1,21 @@
-import 'package:flutter/foundation.dart';
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:gespco/src/services/routes/serviceRoute.dart';
 import 'package:gespco/src/shared/auth/auth_controller.dart';
 import 'package:gespco/src/shared/themes/theme_colors.dart';
+
+final auth = AuthController();
 
 class SplashPage extends StatelessWidget {
   const SplashPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final authController = AuthController();
-    authController.currentUser(context);
+    Timer(const Duration(seconds: 2), () {
+      if (auth.existUser() == null) onGenerateAppViews(auth, context);
+      print("Nuevo inicio de sesión: ${DateTime.now()}");
+    });
 
     return const Scaffold(
       backgroundColor: ThemeColors.background,

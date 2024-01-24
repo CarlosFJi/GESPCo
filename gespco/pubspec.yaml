@@ -45,6 +45,7 @@ dependencies:
   camera: ^0.10.5+5
   image_picker: ^1.0.4
   font_awesome_flutter: ^10.6.0
+  flutter_cupertino_date_picker_fork: 1.0.7
   flutter_masked_text2: ^0.9.1
   animated_card: ^2.0.0
   firebase_auth: ^4.15.0
@@ -55,7 +56,7 @@ dependencies:
   sqflite: ^2.3.0
   sqflite_common_ffi: ^2.3.1
   sqflite_common_ffi_web: ^0.4.2+2
-  path: ^1.8.3
+  path: ^1.8.3 
   uuid: ^4.2.2
 
 dev_dependencies:
@@ -79,7 +80,7 @@ flutter:
   uses-material-design: true
 
   assets:
-    - .env.dev
+    - .env
     - lib/assets/images/
 
   # To add custom fonts to your application, add a fonts section here,

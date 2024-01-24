@@ -2,8 +2,10 @@
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:gespco/src/services/routes/serviceRoute.dart';
 import 'package:gespco/src/shared/auth/auth_controller.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:gespco/src/shared/classes/RoleType.dart';
 import 'package:gespco/src/shared/classes/dataUser.dart';
 import 'package:gespco/src/shared/environment/environment.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
@@ -35,40 +37,53 @@ class Register extends StatefulWidget {
 
 class _RegistrationScreenState extends State<Register> {
   final _auth = FirebaseAuth.instance;
-
   final controller = AuthController();
 
   late String email;
   late String password;
 
-  Future<void> registerUser() async {
+  // verify entryCode
+  // verifyDataset()
+
+  void registerUser(context) async {
     try {
       final newUser = await _auth.createUserWithEmailAndPassword(
           email: email, password: password);
-      Future.delayed(const Duration(seconds: 1));
-
+      final defaultImage = Environment.imageDefault;
       if (kDebugMode) {
         print("Nuevo Usuario: $newUser");
-        print("Imagen: ${Environment.imageDefault}");
+        // print("Imagen: ${defaultImage}");
       }
-      final defaultImage = Environment.imageDefault;
-      final userCheck =
-          UserModel(name: email, photoURL: defaultImage, role: "user");
+
+      final userCheck = UserModel(
+          name: email.split("@")[0],
+          photoURL: defaultImage,
+          role: RoleType.CLIENT);
       // TODO: Register user on ddbb
-      if (context.mounted) {
-        controller.setUser(context, userCheck);
-        if (kDebugMode) print("REGISTER $userCheck");
-        Navigator.pushReplacementNamed(context, '/home', arguments: userCheck);
-      }
+      controller.setUser(context, userCheck);
+      if (kDebugMode) print("REGISTER $userCheck");
     } catch (e) {
-      // TODO: Pantalla de error
-      if (kDebugMode) {
-        print("ERROR $e");
-      }
+      print("ERROR $e");
+      showDialog(
+        //in the case that an error occurs, by us putting the return in front of showDialog, showDialog will fulfill that Future in case of the error. If there is no error the .then will fulfill the expected Future value
+        context: context,
+        builder: (ctx) => AlertDialog(
+          title: const Text('An error occurred'),
+          content: Text("$e"),
+          //we will change the value of message to display according to what the API call returns
+          actions: [
+            TextButton(
+              child: const Text('Okay'),
+              onPressed: () {
+                Navigator.pop(context);
+                showSpinner = false;
+                Navigator.pushReplacementNamed(context, "/login");
+              },
+            ),
+          ],
+        ),
+      );
     }
-    setState(() {
-      showSpinner = false;
-    });
   }
 
   bool showSpinner = false;
@@ -82,7 +97,8 @@ class _RegistrationScreenState extends State<Register> {
           alignment: Alignment.topLeft,
           child: ElevatedButton(
               child: const Icon(Icons.arrow_back),
-              onPressed: () => Navigator.of(context).pop(true)),
+              onPressed: () =>
+                  Navigator.pushReplacementNamed(context, '/login')),
         ),
         ModalProgressHUD(
           inAsyncCall: showSpinner,
@@ -97,10 +113,10 @@ class _RegistrationScreenState extends State<Register> {
                     textAlign: TextAlign.center,
                     onChanged: (value) {
                       email = value;
-                      //Do something with the user input.
+                      //TODO: Do something with the user input.
                     },
                     decoration: kTextFieldDecoration.copyWith(
-                        hintText: 'Enter your email')),
+                        hintText: 'Introduce el correo:')),
                 const SizedBox(
                   height: 8.0,
                 ),
@@ -112,19 +128,18 @@ class _RegistrationScreenState extends State<Register> {
                       //Do something with the user input.
                     },
                     decoration: kTextFieldDecoration.copyWith(
-                        hintText: 'Enter your Password')),
-                const SizedBox(
-                  height: 24.0,
-                ),
+                        hintText: 'Introduce una contraseña:')),
                 RoundedButton(
                   colour: Colors.blueAccent,
-                  title: 'Register',
-                  onPressed: () async {
+                  title: 'Registrate',
+                  onPressed: () {
                     setState(() {
+                      // TODO: Register user
                       showSpinner = true;
                     });
+                    registerUser(context);
                   },
-                )
+                ),
               ],
             ),
           ),

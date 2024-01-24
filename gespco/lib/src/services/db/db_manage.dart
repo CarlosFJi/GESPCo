@@ -9,12 +9,12 @@ class DBManage {
   static const String databaseName = "gespco.db";
   static Database? db;
 
-  static Future<Database> initizateDb() async {
+  Future<Database> initizateDb() async {
     var factory = databaseFactoryFfiWeb;
     final db = await factory.openDatabase('gespco.db');
     var sqliteVersion =
         (await db.rawQuery('select sqlite_version()')).first.values.first;
-    if (kDebugMode) sqliteVersion;
+    if (kDebugMode) print(" versión: $sqliteVersion");
     final checkDB = db.query('users').toString();
     if (checkDB != "") await createTables(db);
     return db;
@@ -29,39 +29,39 @@ class DBManage {
   }
 
   // INSERT
-  static Future<int> insertUser(UserModel user) async {
+  Future<int> insertUser(UserModel user) async {
     Database database = await initizateDb();
 
     return database.insert("users", user.toMap());
   }
 
-  static Future<int> insertTicket(TicketModel tickets) async {
+  Future<int> insertTicket(TicketModel tickets) async {
     Database database = await initizateDb();
     return database.insert("tickets", tickets.toMap());
   }
 
-  static Future<int> insertEvent(DataEvent events) async {
+  Future<int> insertEvent(DataEvent events) async {
     Database database = await initizateDb();
 
     return database.insert("tickets", events.toMap());
   }
 
   // DELETE
-  static Future<int> deleteUser(UserModel user) async {
+  Future<int> deleteUser(UserModel user) async {
     Database database = await initizateDb();
 
     return database.delete("users", where: 'id = ?', whereArgs: [user.id]);
   }
 
 // UPDATe
-  static Future<int> updateUpdate(UserModel user) async {
+  Future<int> updateUpdate(UserModel user) async {
     Database database = await initizateDb();
 
     return database
         .update("users", user.toMap(), where: 'id = ?', whereArgs: [user.id]);
   }
 
-  static Future<List<UserModel>> user() async {
+  Future<List<UserModel>> user() async {
     Database database = await initizateDb();
     final List<Map<String, dynamic>> userMap = await database.query("user");
 
