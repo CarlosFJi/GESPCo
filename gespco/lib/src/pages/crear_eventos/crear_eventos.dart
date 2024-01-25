@@ -80,7 +80,6 @@ class _crearEventoScreenState extends State<crearEventos> {
       print("Event: $eventCheck");
       // TODO: Register event on ddbb
       if (context.mounted) {
-        //  controller.setUser(context, userCheck);
         // TODO: Call API
         if (kDebugMode) print("REGISTER $eventCheck");
         //

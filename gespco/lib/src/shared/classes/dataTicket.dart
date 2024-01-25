@@ -9,14 +9,17 @@ class TicketModel {
   final String? dueDate;
   final double? value;
   final String? barcode;
+  final String? assignedEvent;
+  final String? status;
 
-  TicketModel({
-    id,
-    this.name,
-    this.dueDate,
-    this.value,
-    this.barcode,
-  });
+  TicketModel(
+      {id,
+      this.name,
+      this.dueDate,
+      this.value,
+      this.barcode,
+      this.assignedEvent,
+      this.status});
 
   TicketModel copyWith({
     String? id,
@@ -46,12 +49,12 @@ class TicketModel {
 
   factory TicketModel.fromMap(Map<String, dynamic> map) {
     return TicketModel(
-      id: map['id'],
-      name: map['name'],
-      dueDate: map['dueDate'],
-      value: map['value'],
-      barcode: map['barcode'],
-    );
+        id: map['id'],
+        name: map['name'],
+        dueDate: map['dueDate'],
+        value: map['value'],
+        barcode: map['barcode'],
+        assignedEvent: map['assignedEvent']);
   }
 
   String toJson() => json.encode(toMap());
@@ -61,7 +64,7 @@ class TicketModel {
 
   @override
   String toString() {
-    return 'TicketModel(id: $id, name: $name, dueDate: $dueDate, value: $value, barcode: $barcode)';
+    return 'TicketModel(id: $id, name: $name, dueDate: $dueDate, value: $value, barcode: $barcode, assigned: $assignedEvent)';
   }
 
   @override
@@ -72,11 +75,16 @@ class TicketModel {
         other.name == name &&
         other.dueDate == dueDate &&
         other.value == value &&
-        other.barcode == barcode;
+        other.barcode == barcode &&
+        other.assignedEvent == assignedEvent;
   }
 
   @override
   int get hashCode {
-    return name.hashCode ^ dueDate.hashCode ^ value.hashCode ^ barcode.hashCode;
+    return name.hashCode ^
+        dueDate.hashCode ^
+        value.hashCode ^
+        barcode.hashCode ^
+        assignedEvent.hashCode;
   }
 }

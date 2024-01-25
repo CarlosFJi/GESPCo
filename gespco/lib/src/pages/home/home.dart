@@ -10,7 +10,7 @@ import 'package:gespco/src/shared/themes/font_style.dart';
 import 'package:gespco/src/shared/themes/theme_colors.dart';
 
 class MyHomePage extends StatefulWidget {
-  final UserModel user;
+  final UserModel? user;
   MyHomePage({Key? key, required this.user}) : super(key: key);
 
   @override
@@ -24,17 +24,14 @@ class _HomePageState extends State<MyHomePage> {
   final controller = HomeController();
 
   // TODO: Insertar usuarios - obtener tickets - mostrar eventos y disponibilidad
-  final operations = DBManage();
+  // final operations = DBManage();
 
   String? selectedValue;
 
   @override
   Widget build(BuildContext context) {
-    final currentPage = ModalRoute.of(context)!.settings.name;
-
-    if (currentPage == '/home') {
-      operations.hashCode;
-    }
+    // ModalRoute.of(context)!.settings.arguments as UserModel?
+    if (widget.user == null) controller.checkUser(context);
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(152),
@@ -49,7 +46,7 @@ class _HomePageState extends State<MyHomePage> {
                     style: FontStyles.titleRegular,
                     children: [
                       TextSpan(
-                          text: widget.user.name,
+                          text: widget.user!.name,
                           style: FontStyles.titleBoldBackground)
                     ]),
               ),
@@ -64,7 +61,7 @@ class _HomePageState extends State<MyHomePage> {
                     color: Colors.grey,
                     borderRadius: BorderRadius.circular(5),
                     image: DecorationImage(
-                        image: NetworkImage(widget.user.photoURL!),
+                        image: NetworkImage(widget.user!.photoURL!),
                         scale: 1.0)),
                 child: DropdownButtonHideUnderline(
                   child: DropdownButton2<String>(

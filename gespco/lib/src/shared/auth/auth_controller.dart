@@ -28,11 +28,12 @@ class AuthController {
 
   Future<void> currentUser(BuildContext context) async {
     final instance = await SharedPreferences.getInstance();
-    if (instance.containsKey("user") && context.mounted) {
-      recoveryUser(context, instance);
+    final uInstance = instance.get("user");
+    if (uInstance == null && context.mounted) {
+      await recoveryUser(context, instance);
       return;
-    } else if (existUser() == null) {
-      if (context.mounted) Navigator.pushReplacementNamed(context, "/login");
+    } else {
+      if (context.mounted) Navigator.pushReplacementNamed(context, "/splash");
     }
   }
 

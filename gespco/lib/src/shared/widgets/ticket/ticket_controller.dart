@@ -16,6 +16,7 @@ class TicketListController {
     try {
       final instance = await SharedPreferences.getInstance();
       final response = instance.getStringList("tickets");
+      print('responseTicketList: $response');
       tickets = response!.map((e) => TicketModel.fromJson(e)).toList();
     } catch (e) {
       if (kDebugMode) print("Error getTickets: $e");

@@ -29,7 +29,7 @@ class App extends StatelessWidget {
         "/login": (context) => const LoginPage(),
         "/register": (context) => const Register(),
         "/home": (context) => MyHomePage(
-              user: ModalRoute.of(context)!.settings.arguments as UserModel,
+              user: ModalRoute.of(context)!.settings.arguments as UserModel?,
             ),
         "/barcode_scanner": (context) => const BarcodeScanner(),
 

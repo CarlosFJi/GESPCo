@@ -10,24 +10,21 @@ void onGenerateAppViews(
     AuthController auth,
     context) {
   final exist = auth.existUser();
-  if (exist == null) {
-    auth.currentUser(context);
-  } else {
-    try {
-      if (context.mounted && exist as bool) {
-        if (auth.user.role == RoleType.ADMIN) {
-          print('Hi ADMIN!');
-        } else if (auth.user.role == RoleType.MODERATOR) {
-          print('Hi Moderator');
-        } else {
-          print('Hi Client');
-        }
-        Navigator.pushNamed(context, "/home", arguments: auth.user);
+  if (exist != null) {
+    if (context.mounted && exist as bool) {
+      if (auth.user.role == RoleType.ADMIN) {
+        print('Hi ADMIN!');
+      } else if (auth.user.role == RoleType.MODERATOR) {
+        print('Hi Moderator');
+      } else {
+        print('Hi Client');
       }
-    } catch (e) {
-      Navigator.pushNamed(context, "/login");
+      Navigator.pushNamed(context, "/home", arguments: auth.user);
     }
+  } else {
+    Navigator.pushNamed(context, "/login");
   }
+
   /*
   if (auth.user.role == RoleType.ADMIN) {
     print('Hi ADMIN!');
