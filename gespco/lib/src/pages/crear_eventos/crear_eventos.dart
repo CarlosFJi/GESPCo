@@ -1,7 +1,4 @@
 // ignore_for_file: library_private_types_in_public_api
-
-import 'dart:ffi';
-
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:gespco/src/shared/auth/auth_controller.dart';
@@ -27,14 +24,14 @@ const kTextFieldDecoration = InputDecoration(
   ),
 );
 
-class crearEventos extends StatefulWidget {
-  const crearEventos({super.key});
+class CrearEventos extends StatefulWidget {
+  const CrearEventos({super.key});
 
   @override
   _crearEventoScreenState createState() => _crearEventoScreenState();
 }
 
-class _crearEventoScreenState extends State<crearEventos> {
+class _crearEventoScreenState extends State<CrearEventos> {
   //TODO: Checkear admin para crear el evento.
   final controller = AuthController();
 
@@ -42,7 +39,7 @@ class _crearEventoScreenState extends State<crearEventos> {
   late DateTime fecha;
   late String description;
   late String ciudadOrigin;
-  late Array longLat;
+  late List longLat;
 /*
     EventoId INT PRIMARY KEY,
     NombreEvento VARCHAR(100) NOT NULL,

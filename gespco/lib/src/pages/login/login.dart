@@ -23,7 +23,7 @@ class _LoginPageState extends State<LoginPage> {
     return Scaffold(
       backgroundColor: ThemeColors.background,
       body: SizedBox(
-          width: size.width,
+          width: double.infinity,
           height: size.height,
           child: Stack(children: [
             Container(

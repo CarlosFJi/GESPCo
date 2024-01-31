@@ -1,4 +1,6 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
+import 'package:gespco/src/services/cloud/firestore.dart';
 import 'package:gespco/src/shared/classes/dataEvent.dart';
 import 'package:gespco/src/shared/classes/dataUser.dart';
 import 'package:gespco/src/shared/classes/dataTicket.dart';
@@ -12,6 +14,7 @@ class DBManage {
   Future<Database> initizateDb() async {
     var factory = databaseFactoryFfiWeb;
     final db = await factory.openDatabase('gespco.db');
+
     var sqliteVersion =
         (await db.rawQuery('select sqlite_version()')).first.values.first;
     if (kDebugMode) print(" versión: $sqliteVersion");

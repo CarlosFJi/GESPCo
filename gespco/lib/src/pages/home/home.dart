@@ -31,7 +31,9 @@ class _HomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     // ModalRoute.of(context)!.settings.arguments as UserModel?
-    if (widget.user == null) controller.checkUser(context);
+    if (widget.user == null) {
+      controller.checkUser(context);
+    }
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(152),
@@ -128,8 +130,8 @@ class _HomePageState extends State<MyHomePage> {
                 )),
             GestureDetector(
               onTap: () async {
-                // await Navigator.pushNamed(context, "/barcode_scanner");
-                await Navigator.pushNamed(context, "/crear_eventos");
+                await Navigator.pushNamed(context, "/barcode_scanner");
+                // await Navigator.pushNamed(context, "/crear_eventos");
                 setState(() {});
               },
               child: Container(

@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:gespco/src/pages/barcode_scanner/barcode_scanner.dart';
+import 'package:gespco/src/pages/crear_eventos/crear_eventos.dart';
 import 'package:gespco/src/pages/home/home.dart';
 import 'package:gespco/src/pages/login/login.dart';
 import 'package:gespco/src/pages/register/register.dart';
 import 'package:gespco/src/pages/splash/splash.dart';
+import 'package:gespco/src/services/db/db_controller.dart';
 import 'package:gespco/src/shared/classes/dataUser.dart';
 import 'package:gespco/src/shared/themes/theme_colors.dart';
 
@@ -17,6 +19,7 @@ class App extends StatelessWidget {
     SystemChrome.setSystemUIOverlayStyle(
         SystemUiOverlayStyle(statusBarColor: ThemeColors.background));
   }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -32,14 +35,7 @@ class App extends StatelessWidget {
               user: ModalRoute.of(context)!.settings.arguments as UserModel?,
             ),
         "/barcode_scanner": (context) => const BarcodeScanner(),
-
-        /*
-                "/crear_eventos": (context) => InsertTicketPage(
-            barcode: ModalRoute.of(context) != null
-                ? ModalRoute.of(context)!.settings.arguments.toString()
-                : null),
-
-        */
+        "/crear_eventos": (context) => const CrearEventos(),
       },
     );
   }

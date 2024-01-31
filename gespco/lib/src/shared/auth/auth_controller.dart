@@ -26,6 +26,7 @@ class AuthController {
     return;
   }
 
+  // Recupera el usuario desde la instancia en memoria
   Future<void> currentUser(BuildContext context) async {
     final instance = await SharedPreferences.getInstance();
     final uInstance = instance.get("user");

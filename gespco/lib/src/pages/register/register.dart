@@ -8,8 +8,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:gespco/src/shared/classes/RoleType.dart';
 import 'package:gespco/src/shared/classes/dataUser.dart';
 import 'package:gespco/src/shared/environment/environment.dart';
-import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:gespco/src/shared/widgets/buttons/rounded_btn/rounded_button.dart';
+import 'package:flutter_progress_hud/flutter_progress_hud.dart';
 
 const kTextFieldDecoration = InputDecoration(
   hintText: 'Enter a value',
@@ -34,9 +34,26 @@ class Register extends StatefulWidget {
   @override
   _RegistrationScreenState createState() => _RegistrationScreenState();
 }
+// STREAM BQ https://extensions.dev/extensions/firebase/firestore-bigquery-export
+
+/*
+{ 
+  data: [{
+    insertId: int;
+    json: {
+      timestamp: int;
+      event_id: int;
+      document_name: string;
+      document_id: int;
+      operation: ChangeType;
+      data: string;
+    },
+  }]
+}*/
 
 class _RegistrationScreenState extends State<Register> {
   final _auth = FirebaseAuth.instance;
+  // TODO: Ver Firestore
   final controller = AuthController();
 
   late String email;
@@ -51,9 +68,10 @@ class _RegistrationScreenState extends State<Register> {
           email: email, password: password);
       final defaultImage = Environment.imageDefault;
       if (kDebugMode) {
-        print("Nuevo Usuario: $newUser");
+        print("Nuevo Usuario: $newUser,");
         // print("Imagen: ${defaultImage}");
       }
+      // inal userFB = _useFromFirebaseUser(User)
 
       final userCheck = UserModel(
           name: email.split("@")[0],
@@ -92,58 +110,55 @@ class _RegistrationScreenState extends State<Register> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
+      appBar: AppBar(
+          title: const Text(
+        "On Back pressed",
+        style: TextStyle(color: Colors.white),
+      )),
       body: Stack(children: [
-        Align(
-          alignment: Alignment.topLeft,
-          child: ElevatedButton(
-              child: const Icon(Icons.arrow_back),
-              onPressed: () =>
-                  Navigator.pushReplacementNamed(context, '/login')),
-        ),
-        ModalProgressHUD(
-          inAsyncCall: showSpinner,
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 24.0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                TextField(
-                    keyboardType: TextInputType.emailAddress,
-                    textAlign: TextAlign.center,
-                    onChanged: (value) {
-                      email = value;
-                      //TODO: Do something with the user input.
+        ProgressHUD(
+            child: Builder(
+          builder: (context) => Center(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 24.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  TextField(
+                      keyboardType: TextInputType.emailAddress,
+                      textAlign: TextAlign.center,
+                      onChanged: (value) {
+                        email = value;
+                        //TODO: Do something with the user input.
+                      },
+                      decoration: kTextFieldDecoration.copyWith(
+                          hintText: 'Introduce el correo:')),
+                  TextField(
+                      obscureText: true,
+                      textAlign: TextAlign.center,
+                      onChanged: (_) {
+                        password = _;
+                        //Do something with the user input.
+                      },
+                      decoration: kTextFieldDecoration.copyWith(
+                          hintText: 'Introduce una contraseña:')),
+                  RoundedButton(
+                    colour: Colors.blueAccent,
+                    title: 'Registrate',
+                    onPressed: () {
+                      setState(() {
+                        // TODO: Register user
+                        showSpinner = true;
+                      });
+                      registerUser(context);
                     },
-                    decoration: kTextFieldDecoration.copyWith(
-                        hintText: 'Introduce el correo:')),
-                const SizedBox(
-                  height: 8.0,
-                ),
-                TextField(
-                    obscureText: true,
-                    textAlign: TextAlign.center,
-                    onChanged: (_) {
-                      password = _;
-                      //Do something with the user input.
-                    },
-                    decoration: kTextFieldDecoration.copyWith(
-                        hintText: 'Introduce una contraseña:')),
-                RoundedButton(
-                  colour: Colors.blueAccent,
-                  title: 'Registrate',
-                  onPressed: () {
-                    setState(() {
-                      // TODO: Register user
-                      showSpinner = true;
-                    });
-                    registerUser(context);
-                  },
-                ),
-              ],
+                  ),
+                ],
+              ),
             ),
           ),
-        ),
+        ))
       ]),
     );
   }
