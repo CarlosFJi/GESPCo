@@ -1,6 +1,7 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:gespco/src/pages/event_list/events.dart';
 import 'package:gespco/src/pages/extract/extract.dart';
 import 'package:gespco/src/pages/home/home_controller.dart';
 import 'package:gespco/src/pages/tickets/tickets.dart';
@@ -20,12 +21,11 @@ class MyHomePage extends StatefulWidget {
 final List<String> items = ["Cerrar sesión"];
 
 class _HomePageState extends State<MyHomePage> {
-  final pages = [const TicketsPage(), const ExtractPage()];
+  final pages = [const TicketsPage(), const ExtractPage(), const EventPage()];
   final controller = HomeController();
 
   // TODO: Insertar usuarios - obtener tickets - mostrar eventos y disponibilidad
   // final operations = DBManage();
-
   String? selectedValue;
 
   @override
@@ -34,6 +34,7 @@ class _HomePageState extends State<MyHomePage> {
     if (widget.user == null) {
       controller.checkUser(context);
     }
+
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(152),
@@ -148,7 +149,7 @@ class _HomePageState extends State<MyHomePage> {
             ),
             IconButton(
                 onPressed: () {
-                  controller.setPage(1);
+                  controller.setPage(2);
                   setState(() {});
                 },
                 icon: Icon(

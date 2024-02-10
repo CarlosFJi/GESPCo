@@ -6,12 +6,11 @@ class CloudFirestoreService {
   final FirebaseFirestore db = FirebaseFirestore.instance;
 
   Future<String> init(UserModel user) async {
-    print("serviceCF: $user");
-    Map<String, dynamic> queryParameters = {"user": "user"};
-    print("serviceCF - queryParameters: $queryParameters");
+    print("serviceCF: ${user.toJson()}");
+    final userMapping = user.toMap();
 
     Map<String, String> stringQueryParameters =
-        queryParameters.map((key, value) => MapEntry(key, value));
+        userMapping.map((key, value) => MapEntry(key, value));
 
     return await addUser(stringQueryParameters);
   }

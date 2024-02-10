@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
-import 'package:gespco/src/services/cloud/firestore.dart';
+import 'package:gespco/src/services/storage/firestore.dart';
 import 'package:gespco/src/shared/classes/dataEvent.dart';
 import 'package:gespco/src/shared/classes/dataUser.dart';
 import 'package:gespco/src/shared/classes/dataTicket.dart';

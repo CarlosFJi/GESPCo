@@ -59,6 +59,7 @@ dependencies:
   sqflite_common_ffi_web: ^0.4.2+2
   path: ^1.8.3 
   uuid: ^4.2.2
+  path_provider: ^2.1.2
 
 dev_dependencies:
   flutter_test:
@@ -82,7 +83,10 @@ flutter:
 
   assets:
     - .env
+    - lib/assets/
     - lib/assets/images/
+    - lib/assets/datasetAgenda.json
+
 
   # To add custom fonts to your application, add a fonts section here,
   # in this "flutter" section. Each entry in this list should have a

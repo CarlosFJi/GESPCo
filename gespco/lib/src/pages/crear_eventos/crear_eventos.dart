@@ -51,11 +51,8 @@ class _crearEventoScreenState extends State<CrearEventos> {
 */
   // TODO: Incluir datos de nuevo Evento
   DataEvent createNewEvent() {
-    final newContext =
-        Context(id: "0000", title: "testTitle", description: "test");
-
     return {
-      context: newContext,
+      context: [],
     } as DataEvent;
   }
 

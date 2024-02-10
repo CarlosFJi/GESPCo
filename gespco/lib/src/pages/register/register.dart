@@ -2,7 +2,8 @@
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:gespco/src/services/routes/serviceRoute.dart';
+// import 'package:gespco/src/services/storage/firestore.dart';
+// import 'package:gespco/src/services/routes/serviceRoute.dart';
 import 'package:gespco/src/shared/auth/auth_controller.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:gespco/src/shared/classes/RoleType.dart';
@@ -53,7 +54,6 @@ class Register extends StatefulWidget {
 
 class _RegistrationScreenState extends State<Register> {
   final _auth = FirebaseAuth.instance;
-  // TODO: Ver Firestore
   final controller = AuthController();
 
   late String email;
@@ -71,7 +71,6 @@ class _RegistrationScreenState extends State<Register> {
         print("Nuevo Usuario: $newUser,");
         // print("Imagen: ${defaultImage}");
       }
-      // inal userFB = _useFromFirebaseUser(User)
 
       final userCheck = UserModel(
           name: email.split("@")[0],

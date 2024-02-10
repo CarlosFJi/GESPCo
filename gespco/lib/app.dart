@@ -6,7 +6,6 @@ import 'package:gespco/src/pages/home/home.dart';
 import 'package:gespco/src/pages/login/login.dart';
 import 'package:gespco/src/pages/register/register.dart';
 import 'package:gespco/src/pages/splash/splash.dart';
-import 'package:gespco/src/services/db/db_controller.dart';
 import 'package:gespco/src/shared/classes/dataUser.dart';
 import 'package:gespco/src/shared/themes/theme_colors.dart';
 

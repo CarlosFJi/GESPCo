@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:gespco/src/services/cloud/firestore.dart';
+import 'package:gespco/src/services/storage/firestore.dart';
 import 'package:gespco/src/services/signIn/signIn.dart';
 import 'package:gespco/src/shared/auth/auth_controller.dart';
 import 'package:gespco/src/shared/classes/RoleType.dart';
@@ -15,7 +15,6 @@ final auth = AuthController();
 
 class LoginController {
   final googleSignin = const GoogleSignInScreen();
-  final serviceCF = CloudFirestoreService();
 
   String checkManagement(id) {
     final management = Environment.adminUser;
@@ -41,8 +40,6 @@ class LoginController {
         name: response!.displayName!,
         photoURL: response.photoUrl!,
         role: RoleType.CLIENT);
-
-    serviceCF.init(user);
 
     if (context.mounted) {
       auth.setUser(context, user);
