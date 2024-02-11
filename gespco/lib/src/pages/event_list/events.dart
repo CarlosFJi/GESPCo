@@ -1,8 +1,13 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:gespco/src/pages/event_list/events_controller.dart';
 import 'package:gespco/src/services/readJson/readJson.dart';
 import 'package:gespco/src/services/storage/firestore_.dart';
 import 'package:gespco/src/shared/classes/dataEvent.dart';
+import 'package:gespco/src/shared/themes/font_style.dart';
+import 'package:gespco/src/shared/themes/theme_colors.dart';
+import 'package:animated_card/animated_card.dart';
 
 class EventPage extends StatefulWidget {
   const EventPage({super.key});
@@ -21,27 +26,81 @@ class _State extends State<EventPage> {
   final List<DataEvent> _eventListDummy = <DataEvent>[
     /*
     DataEvent(context: Context(description: "des", title: "Title", id: "ev00")),
-    DataEvent(
-        context: Context(description: "des1", title: "Title1", id: "ev01")),
-    DataEvent(
-        context: Context(description: "des2", title: "Title2", id: "ev02"))
         */
   ];
-
-  List<dynamic> getEvents() {
+  void getEvents() {
     readingJson().readCounter();
     controller.readEventsJson().then((v) => {
           setState(() {
-            listEvent = v["data"];
+            listEvent = jsonDecode(v["data"]);
+            _dataToDisplay.add(DataEvent.fromJson(v));
+            print("oyeee: $_dataToDisplay");
+            DataEvent.toJson(v);
           })
         });
-    return listEvent;
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(title: const Center(child: Text("Firebase Firestore"))),
+    getEvents();
+    if (listEvent == []) {
+      final listFire =
+          Firestore.getEvents("events_managed").then((value) => value);
+      listEvent.add(listFire);
+      print("LISTEVENT_ $listEvent");
+    }
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          SizedBox(
+            height: 80,
+            child: Stack(
+              children: [
+                Container(
+                  height: 40,
+                  color: ThemeColors.primary,
+                ),
+                // AnimatedCard(
+                //  direction: AnimatedCardDirection.left,
+                // child: "" as Widget,
+                //TicketInfoWidget(key: UniqueKey()),
+                // ),
+              ],
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 24),
+            child: Row(
+              children: [
+                Text("Eventos", style: FontStyles.titleBoldHeading),
+              ],
+            ),
+          ),
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 24),
+            child: Divider(
+              color: ThemeColors.stroke,
+            ),
+          ),
+          const Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 24),
+            // child: as Widget,
+            //TicketList(key: UniqueKey(),
+          ),
+        ],
+      ),
+    );
+  }
+}
+    /*
+    Scaffold(
+        appBar: AppBar(
+          title: const Center(child: Text("Eventos")),
+          leading: IconButton(
+            icon: const Icon(Icons.arrow_back, color: Colors.black),
+            onPressed: () => Navigator.of(context).popAndPushNamed("/home"),
+          ),
+        ),
         body: Padding(
             padding: const EdgeInsets.all(10.0),
             child: Column(children: [
@@ -50,14 +109,6 @@ class _State extends State<EventPage> {
                   color: Colors.grey.shade300,
                   child: IconButton(
                       onPressed: () async {
-                        _dataToDisplay =
-                            await Firestore.getEvents("events_managed");
-                        final events = getEvents();
-                        _eventListDummy.add(
-                            DataEvent(context: Context.fromMap(events[0])));
-                        print("EVENTS: $_dataToDisplay");
-                        print("EVENTS2: $events");
-
                         /*
                                 await Firestore.addOrUpdateWithId(
                             "events_managed", "0", _eventListDummy[0].toMap());
@@ -147,7 +198,7 @@ class _State extends State<EventPage> {
                 ),
               ]),
               Container(
-                height: 10,
+                height: 50,
                 child: listEvent.isEmpty
                     ? const Text("Please click below button to get the data")
                     : Column(
@@ -156,7 +207,8 @@ class _State extends State<EventPage> {
                           return Card(
                             child: ListTile(
                               onTap: () {
-                                listEvent[index]["title"].toString();
+                                print(
+                                    "HI: ${listEvent[index]["title"].toString()}");
                               },
                               title: Text(listEvent[index]["title"].toString()),
                               subtitle: Text(
@@ -167,7 +219,7 @@ class _State extends State<EventPage> {
                       ),
               ),
               //(_dataToDisplay.isEmpty)
-              (activated)
+              (listEvent.isEmpty)
                   ? const Text("No data")
                   : Expanded(
                       child: ListView.builder(
@@ -177,4 +229,5 @@ class _State extends State<EventPage> {
                           }))
             ])));
   }
-}
+  */
+

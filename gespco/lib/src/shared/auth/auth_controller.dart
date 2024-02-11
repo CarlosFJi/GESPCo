@@ -7,7 +7,6 @@ import "package:shared_preferences/shared_preferences.dart";
 class AuthController {
   UserModel? _user;
   UserModel get user => _user!;
-  // CloudFirestoreService serviceCF = CloudFirestoreService();
 
   void setUser(BuildContext context, UserModel? user) {
     saveUser(user!);

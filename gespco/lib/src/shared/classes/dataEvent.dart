@@ -7,6 +7,7 @@ import 'dart:convert';
 class DataEvent {
   Context context;
   // List<Graph> graph;
+  List<DataEvent> listEvents = [];
 
   DataEvent({
     required this.context,
@@ -14,10 +15,13 @@ class DataEvent {
   });
 
   factory DataEvent.fromMap(Map<String, dynamic> json) => DataEvent(
-        context: Context.fromMap(json["context"]),
+        context: Context.fromMap(jsonDecode(json["data"])),
       );
 
-  toJson(String data) => {jsonDecode(data)};
+  factory DataEvent.fromJson(Map<String, dynamic> json) => DataEvent(
+      context: Context.fromMap(json["data"].map((x) => Context.fromMap(x))));
+
+  static toJson(Map<String, dynamic> data) => {DataEvent.fromMap(data)};
 
   Map<String, dynamic> toMap() {
     return {
@@ -48,94 +52,97 @@ class Context {
   String id;
   String description;
   String title;
-  String c;
-  String dcterms;
-  String geo;
-  String loc;
-  String org;
-  String vcard;
-  String schema;
-  String relation;
-  String references;
-  String address;
-  String area;
-  String district;
-  String locality;
-  String postalCode;
-  String streetAddress;
-  String location;
-  String latitude;
-  String longitude;
-  String organization;
-  String organizationDesc;
-  String accesibility;
-  String services;
-  String schedule;
-  String organizationName;
+  String? numAsist;
+  String? c;
+  String? dcterms;
+  String? geo;
+  String? loc;
+  String? org;
+  String? vcard;
+  String? schema;
+  String? relation;
+  String? references;
+  String? address;
+  String? area;
+  String? district;
+  String? locality;
+  String? postalCode;
+  String? streetAddress;
+  String? location;
+  String? latitude;
+  String? longitude;
+  String? organization;
+  String? organizationDesc;
+  String? accesibility;
+  String? services;
+  String? schedule;
+  String? organizationName;
 
-  String link;
-  String uid;
-  String dtstart;
-  String dtend;
-  String time;
-  String excludedDays;
-  String eventLocation;
-  String free;
-  String price;
-  String recurrence;
-  String days;
-  String frequency;
-  String interval;
-  String audience;
+  String? link;
+  String? uid;
+  String? dtstart;
+  String? dtend;
+  String? time;
+  String? excludedDays;
+  String? eventLocation;
+  String? free;
+  String? price;
+  String? recurrence;
+  String? days;
+  String? frequency;
+  String? interval;
+  String? audience;
 
   Context({
     required this.id,
     required this.title,
     required this.description,
-    required this.c,
-    required this.dcterms,
-    required this.geo,
-    required this.loc,
-    required this.org,
-    required this.vcard,
-    required this.schema,
-    required this.relation,
-    required this.references,
-    required this.address,
-    required this.area,
-    required this.district,
-    required this.locality,
-    required this.postalCode,
-    required this.streetAddress,
-    required this.location,
-    required this.latitude,
-    required this.longitude,
-    required this.organization,
-    required this.organizationDesc,
-    required this.accesibility,
-    required this.services,
-    required this.schedule,
-    required this.organizationName,
-    required this.link,
-    required this.uid,
-    required this.dtstart,
-    required this.dtend,
-    required this.time,
-    required this.excludedDays,
-    required this.eventLocation,
-    required this.free,
-    required this.price,
-    required this.recurrence,
-    required this.days,
-    required this.frequency,
-    required this.interval,
-    required this.audience,
+    numAsist,
+    c,
+    dcterms,
+    geo,
+    loc,
+    org,
+    vcard,
+    schema,
+    relation,
+    references,
+    address,
+    area,
+    district,
+    locality,
+    postalCode,
+    streetAddress,
+    location,
+    latitude,
+    longitude,
+    organization,
+    organizationDesc,
+    accesibility,
+    services,
+    schedule,
+    organizationName,
+    link,
+    uid,
+    dtstart,
+    dtend,
+    time,
+    excludedDays,
+    eventLocation,
+    free,
+    price,
+    recurrence,
+    days,
+    frequency,
+    interval,
+    audience,
   });
 
   factory Context.fromMap(Map<String, dynamic> json) => Context(
       id: json["id"],
       title: json["title"],
       description: json["description"],
+      numAsist: json["numAsist"],
       c: json["c"],
       dcterms: json["dcterms"],
       geo: json["geo"],
@@ -175,11 +182,12 @@ class Context {
       interval: json["interval"],
       audience: json["audience"]);
 
-  Map<String, dynamic> toJson() {
+  Map<String, dynamic> toJson(List<Context> data) {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['id'] = id;
     data['description'] = description;
     data['title'] = title;
+    data['numAsist'] = numAsist;
     data["c"] = c;
     data["dcterms"] = dcterms;
     data["geo"] = geo;
@@ -226,6 +234,7 @@ class Context {
         "id": id,
         "title": title,
         "description": description,
+        "numAsist": numAsist,
         "c": c,
         "dcterms": dcterms,
         "geo": geo,

@@ -19,12 +19,6 @@ class ControllerEvents {
   Future<Map<String, dynamic>> readEventsJson() async {
     Map<String, dynamic> jsonData =
         await loadJsonFromAssets('lib/assets/datasetAgenda.json');
-
-    List<dynamic> data = jsonData['data'];
-    String dataFormatted = "[$data]";
-    // final reading = await readingJSON.readCounter();
-    // String response = await rootBundle.loadString(path);
-    print("hola:  $dataFormatted");
     return jsonData;
   }
 }

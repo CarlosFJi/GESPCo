@@ -21,7 +21,7 @@ class MyHomePage extends StatefulWidget {
 final List<String> items = ["Cerrar sesión"];
 
 class _HomePageState extends State<MyHomePage> {
-  final pages = [const TicketsPage(), const ExtractPage(), const EventPage()];
+  final pages = [const EventPage(), const TicketsPage(), const ExtractPage()];
   final controller = HomeController();
 
   // TODO: Insertar usuarios - obtener tickets - mostrar eventos y disponibilidad
@@ -131,9 +131,10 @@ class _HomePageState extends State<MyHomePage> {
                 )),
             GestureDetector(
               onTap: () async {
-                await Navigator.pushNamed(context, "/barcode_scanner");
-                // await Navigator.pushNamed(context, "/crear_eventos");
-                setState(() {});
+                controller.setPage(0);
+                setState(() {
+                  Navigator.of(context).pushNamed("/eventos");
+                });
               },
               child: Container(
                 width: 56,

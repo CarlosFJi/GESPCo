@@ -83,7 +83,6 @@ class _crearEventoScreenState extends State<CrearEventos> {
     } catch (e) {
       // TODO: Pantalla de error
       if (kDebugMode) {
-        print("ERROR $e");
         // TODO: Modal control error;
         showSpinner = false;
       }

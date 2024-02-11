@@ -14,6 +14,7 @@ class SplashPage extends StatelessWidget {
   Widget build(BuildContext context) {
     Timer(const Duration(seconds: 2), () {
       if (auth.existUser() == null) onGenerateAppViews(auth, context);
+
       print("Nuevo inicio de sesión: ${DateTime.now()}");
     });
 

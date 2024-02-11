@@ -1,7 +1,18 @@
+import 'dart:convert';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:gespco/src/shared/classes/dataEvent.dart';
 
 class Firestore {
+  static void newUser(String data) async {
+    final dataEncode = jsonEncode(data);
+    print("NuevoUsuario?: $dataEncode");
+    final addUser = await Firestore.addOrUpdateWithId(
+        "user_access", data, dataEncode as Map<String, dynamic>);
+    print("Añadido?: $addUser");
+  }
+
   // Obtener entradas
   static Future<List<DataEvent>> getEvents(String col) async {
     return (await FirebaseFirestore.instance
