@@ -5,7 +5,6 @@ import 'package:gespco/src/pages/event_list/events.dart';
 import 'package:gespco/src/pages/extract/extract.dart';
 import 'package:gespco/src/pages/home/home_controller.dart';
 import 'package:gespco/src/pages/tickets/tickets.dart';
-import 'package:gespco/src/services/db/db_manage.dart';
 import 'package:gespco/src/shared/classes/dataUser.dart';
 import 'package:gespco/src/shared/themes/font_style.dart';
 import 'package:gespco/src/shared/themes/theme_colors.dart';

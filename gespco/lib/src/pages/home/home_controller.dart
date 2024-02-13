@@ -30,7 +30,7 @@ class HomeController {
     loginController.checkManagement(id);
   }
 
-  void signOut(BuildContext context) {
-    loginController.signOut(context);
+  Future<void> signOut(BuildContext context) async {
+    await loginController.signOut(context);
   }
 }

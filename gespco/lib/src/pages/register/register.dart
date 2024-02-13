@@ -1,5 +1,7 @@
 // ignore_for_file: library_private_types_in_public_api
 
+import 'dart:convert';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:gespco/src/services/storage/firestore_.dart';
@@ -54,43 +56,15 @@ class Register extends StatefulWidget {
 }*/
 
 class _RegistrationScreenState extends State<Register> {
-  final _auth = FirebaseAuth.instance;
   final controller = AuthController();
+  final logged = UserModel;
 
   late String email;
   late String password;
 
-  // verify entryCode
-  // verifyDataset()
-
   void registerUser(context) async {
     try {
-      final newUser = await _auth.createUserWithEmailAndPassword(
-          email: email, password: password);
-      final firebaseUser =
-          (await _auth.signInWithCredential(newUser.credential!)).user;
-
-      final defaultImage = Environment.imageDefault;
-      if (kDebugMode) {
-        print("Nuevo Usuario: $firebaseUser,");
-        // print("Imagen: ${defaultImage}");
-      }
-/*
-Nuevo Usuario: UserCredential(additionalUserInfo: AdditionalUserInfo(isNewUser: true, profile: {}, providerId: password, username: null, authorizationCode: null), credential:
-null, user: User(displayName: null, email: chocan@hola.com, isEmailVerified: false, isAnonymous: false, metadata: UserMetadata(creationTime: 2024-02-10 19:02:22.000Z,
-lastSignInTime: 2024-02-10 19:02:22.000Z), phoneNumber: null, photoURL: null, providerData, [UserInfo(displayName: null, email: chocan@hola.com, phoneNumber: null, photoURL:
-null, providerId: password, uid: chocan@hola.com)], refreshToken:
-AMf-vBzmCv3lQz2IX-b5CaU8SEeIQjzEdOBqUEautkL7-luwa8BBCrg0jqH2cPm_KAujzFAXVafPuzlK3gzsJO_LDPl8fRUov0Zs407rRzBc0RYGeTXMi5vIdEhtsvqHjfnld39FpFfvV4-7dGsM70ThkIuJ-7nQA6seAFrXgxHAcG7
-_UdKYY1zFA6ktoIiiveEwUNH2jftR, tenantId: null, uid: x8liJQHeNbWu2ceBMU9xFpZ7ZL33))
-*/
-      final userCheck = UserModel(
-          name: email.split("@")[0],
-          photoURL: defaultImage,
-          role: RoleType.CLIENT);
-      // TODO: Register user on ddbb
-      controller.setUser(context, userCheck);
-      Firestore.newUser(newUser.toString());
-      if (kDebugMode) print("REGISTER $userCheck");
+      controller.pathUser(context, email, password, true);
     } catch (e) {
       print("ERROR $e");
       showDialog(

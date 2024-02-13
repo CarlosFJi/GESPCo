@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:gespco/src/shared/classes/dataTicket.dart';
+import 'package:gespco/src/shared/classes/dataEvent.dart';
 import 'package:gespco/src/shared/themes/font_style.dart';
 
-class TicketTile extends StatelessWidget {
-  final TicketModel data;
-  const TicketTile({Key? key, required this.data}) : super(key: key);
+class EventTile extends StatelessWidget {
+  final DataEvent data;
+  const EventTile({Key? key, required this.data}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -13,11 +13,11 @@ class TicketTile extends StatelessWidget {
       child: ListTile(
         contentPadding: EdgeInsets.zero,
         title: Text(
-          data.name!,
+          data.context.title,
           style: FontStyles.titleListTile,
         ),
         subtitle: Text(
-          "Vence en: ${data.dueDate}",
+          "Vence en: ${data.context.address}",
           style: FontStyles.captionBody,
         ),
         trailing: Text.rich(TextSpan(
@@ -25,7 +25,7 @@ class TicketTile extends StatelessWidget {
           style: FontStyles.trailingRegular,
           children: [
             TextSpan(
-              text: "${data.value!.toStringAsFixed(2)}",
+              text: data.context.location,
               style: FontStyles.trailingBold,
             ),
           ],

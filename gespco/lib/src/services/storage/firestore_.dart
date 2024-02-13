@@ -3,14 +3,15 @@ import 'dart:convert';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:gespco/src/shared/classes/dataEvent.dart';
+import 'package:gespco/src/shared/classes/dataUser.dart';
 
 class Firestore {
-  static void newUser(String data) async {
-    final dataEncode = jsonEncode(data);
-    print("NuevoUsuario?: $dataEncode");
-    final addUser = await Firestore.addOrUpdateWithId(
-        "user_access", data, dataEncode as Map<String, dynamic>);
-    print("Añadido?: $addUser");
+  static void newUser(UserModel data) async {
+    final colection = Firestore.getEvents("user_access");
+    print("colection: $colection");
+
+    Firestore.addOrUpdateWithId(
+        "user_access", data.id!, UserModel.userToJson(data));
   }
 
   // Obtener entradas
@@ -59,6 +60,7 @@ class Firestore {
   // Añadir por id
   static Future addOrUpdateWithId(
       String collection, String documentId, Map<String, dynamic> data) async {
+    print("addOrUpdateWithId: $collection, docu: $documentId, data: $data");
     await FirebaseFirestore.instance
         .collection(collection)
         .doc(documentId)

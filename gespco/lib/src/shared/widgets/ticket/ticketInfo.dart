@@ -33,16 +33,21 @@ class _InfoWidgetState extends State<TicketInfoWidget> {
               ),
               ValueListenableBuilder<List<TicketModel>>(
                   valueListenable: controller.ticketNotifier,
-                  builder: (_, tickets, __) => Text.rich(TextSpan(
-                        text: "Tienes ",
-                        style: FontStyles.captionBackground,
-                        children: [
-                          TextSpan(
-                            text: "${tickets.length} tickets \n",
-                            style: FontStyles.captionBoldBackground,
-                          )
-                        ],
-                      )))
+                  builder: (_, tickets, __) => tickets.length > 0
+                      ? Text.rich(TextSpan(
+                          text: "Tienes ",
+                          style: FontStyles.captionBackground,
+                          children: [
+                            TextSpan(
+                              text: "${tickets.length} tickets \n",
+                              style: FontStyles.captionBoldBackground,
+                            )
+                          ],
+                        ))
+                      : Text.rich(TextSpan(
+                          text: "Parece que no tienes tickets.",
+                          style: FontStyles.captionBackground,
+                        )))
             ],
           ),
         ),
