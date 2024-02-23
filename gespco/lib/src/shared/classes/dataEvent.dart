@@ -1,9 +1,5 @@
 import 'dart:convert';
 
-import 'package:flutter/foundation.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'dart:convert';
-
 class DataEvent {
   Context context;
   // List<Graph> graph;
@@ -14,12 +10,29 @@ class DataEvent {
     // required this.graph,
   });
 
+  DataEvent? fromIterable(Iterable<DataEvent> iter) {
+    final data = iter as Context;
+    if (data != null) {
+      final dt = DataEvent(context: data);
+      return dt;
+    }
+  }
+
+  DataEvent copyWith({Context? context}) {
+    return DataEvent(context: context ?? this.context);
+  }
+
+  @override
+  String toString() {
+    return 'DataEvent(context: ${context.toString()})';
+  }
+
   factory DataEvent.fromMap(Map<String, dynamic> json) => DataEvent(
         context: Context.fromMap(jsonDecode(json["data"])),
       );
 
-  factory DataEvent.fromJson(Map<String, dynamic> json) => DataEvent(
-      context: Context.fromMap(json["data"].map((x) => Context.fromMap(x))));
+  factory DataEvent.fromJson(Map<String, dynamic> json) =>
+      DataEvent(context: Context.fromMap(json));
 
   static toJson(Map<String, dynamic> data) => {DataEvent.fromMap(data)};
 

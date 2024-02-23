@@ -56,7 +56,7 @@ class DBController {
     var cabesa = null;
     CollectionReference users =
         FirebaseFirestore.instance.collection('user_access');
-    users.doc("0DXiWRIa021rK0L6c4xx").get().then((_) {
+    users.doc("").get().then((_) {
       cabesa = _;
       print("DOC USER: $_");
     });

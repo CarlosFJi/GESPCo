@@ -1,9 +1,9 @@
 import "dart:convert";
-import "dart:js_util";
 
 import "package:firebase_auth/firebase_auth.dart";
 import "package:flutter/foundation.dart";
 import "package:flutter/material.dart";
+import "package:gespco/src/services/pubSub/pubSub.dart";
 import "package:gespco/src/services/storage/firestore_.dart";
 import "package:gespco/src/shared/classes/RoleType.dart";
 import "package:gespco/src/shared/classes/dataUser.dart";
@@ -15,30 +15,52 @@ class AuthController {
   UserModel get user => _user!;
   final _auth = FirebaseAuth.instance;
 
+  final _pbService = const PubSubService();
+
   void loginUser(context, AuthCredential credens) async {
     final result = (await _auth.signInWithCredential(credens));
     final logged = result.user;
     pathUser(context, logged!.email, result.credential?.providerId, false);
   }
 
+  String buildMeta(String data) {
+    final regExpDateTime =
+        RegExp(r"\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}\.\d{3}Z");
+    final match = regExpDateTime.firstMatch(data);
+
+    return match!.group(0).toString();
+  }
+
+  void pubSubServiceWelcome(UserModel userLogged) async {
+    final metadata = buildMeta(userLogged.metadata!);
+
+    final dataBQ = {
+      "userId": "${userLogged.name}",
+      "name": "${userLogged.name}",
+      "fecha_registro": "${metadata}",
+      "role": RoleType.convertRole(RoleType.CLIENT),
+      "ultimo_acceso": "${metadata}"
+    };
+    // TODO: ENVIRONMENT TOPICS
+    final messageId = await _pbService.publish("new_user", jsonEncode(dataBQ));
+    print("MessageId Pub/Sub: $messageId");
+  }
+
   Future<UserModel> pathUser(context, email, password, isRegister) async {
     final defaultImage = Environment.imageDefault;
     final isNew = await _auth.fetchSignInMethodsForEmail(email);
-    print("Es nuevo usuario ?: ['$isNew']");
+
     var userFormat = {};
     if (isRegister == true) {
       final newUser = await _auth.createUserWithEmailAndPassword(
           email: email, password: password);
 
-      print("Nuevo usuario: $newUser");
+      print("Nuevo acceso: $newUser");
 
       if (newUser.credential != null) {
         final firebaseUser =
             (await _auth.signInWithCredential(newUser.credential!)).user;
-
-        print("FBU: $firebaseUser");
       }
-
       final userData = newUser.user;
       final imageURL = userData!.photoURL;
 
@@ -70,6 +92,7 @@ class AuthController {
 
       Firestore.newUser(userLogged);
       setUser(context, userLogged);
+      if (isRegister == true) pubSubServiceWelcome(userLogged);
       return userLogged;
     }
     return {} as UserModel;
@@ -78,8 +101,6 @@ class AuthController {
   void setUser(BuildContext context, UserModel? user) {
     saveUser(user!);
     _user = user;
-    // serviceCF.init(user);
-    print("Algo ahi");
     Navigator.pushReplacementNamed(context, "/home", arguments: user);
   }
 

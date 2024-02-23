@@ -7,6 +7,7 @@ class Environment {
   static String get apiUrl => dotenv.env['API_URL'] ?? 'MY_FALLBACK';
   static String get adminUser => dotenv.env['ADMIN_USERS'] ?? '';
   static String? get moderators => dotenv.env['MODERATOR_USERS'];
+  static String? get accountGCP => dotenv.env['GOOGLE_APPLICATION_CREDENTIALS'];
 
   Future<void> load() async {
     await dotenv.load(fileName: fileName);

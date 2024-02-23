@@ -28,6 +28,7 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  googleapis: '>=3.0.0 <13.0.0'
   flutter:
     sdk: flutter
 
@@ -60,6 +61,7 @@ dependencies:
   path: ^1.8.3 
   uuid: ^4.2.2
   path_provider: ^2.1.2
+  googleapis_auth: ^1.0.0
 
 dev_dependencies:
   flutter_test:
@@ -86,6 +88,8 @@ flutter:
     - lib/assets/
     - lib/assets/images/
     - lib/assets/datasetAgenda.json
+    - lib/assets/google-services.json
+    - lib/assets/pubsub-services.json
 
 
   # To add custom fonts to your application, add a fonts section here,

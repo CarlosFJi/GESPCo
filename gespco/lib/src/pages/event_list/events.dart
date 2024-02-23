@@ -1,6 +1,8 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:gespco/src/pages/event_list/event_info.dart';
+import 'package:gespco/src/pages/event_list/event_list.dart';
 import 'package:gespco/src/pages/event_list/events_controller.dart';
 import 'package:gespco/src/services/readJson/readJson.dart';
 import 'package:gespco/src/services/storage/firestore_.dart';
@@ -17,38 +19,27 @@ class EventPage extends StatefulWidget {
 }
 
 class _State extends State<EventPage> {
-  bool activated = false;
-
-  List<DataEvent> _dataToDisplay = [];
+  List _dataToDisplay = [];
   List<dynamic> listEvent = [];
   final controller = ControllerEvents();
   final readJson = readingJson();
-  final List<DataEvent> _eventListDummy = <DataEvent>[
-    /*
-    DataEvent(context: Context(description: "des", title: "Title", id: "ev00")),
-        */
-  ];
+
+  List<Context> contextList = [];
+
   void getEvents() {
     readingJson().readCounter();
+
     controller.readEventsJson().then((v) => {
           setState(() {
-            listEvent = jsonDecode(v["data"]);
-            _dataToDisplay.add(DataEvent.fromJson(v));
-            print("oyeee: $_dataToDisplay");
-            DataEvent.toJson(v);
+            contextList = v["data"];
+            _dataToDisplay.add(contextList);
           })
         });
   }
 
   @override
   Widget build(BuildContext context) {
-    getEvents();
-    if (listEvent == []) {
-      final listFire =
-          Firestore.getEvents("events_managed").then((value) => value);
-      listEvent.add(listFire);
-      print("LISTEVENT_ $listEvent");
-    }
+    if (contextList == null) getEvents();
     return SingleChildScrollView(
       child: Column(
         children: [
@@ -60,11 +51,10 @@ class _State extends State<EventPage> {
                   height: 40,
                   color: ThemeColors.primary,
                 ),
-                // AnimatedCard(
-                //  direction: AnimatedCardDirection.left,
-                // child: "" as Widget,
-                //TicketInfoWidget(key: UniqueKey()),
-                // ),
+                AnimatedCard(
+                  direction: AnimatedCardDirection.left,
+                  child: EventInfoWidget(key: UniqueKey()),
+                ),
               ],
             ),
           ),
@@ -82,10 +72,9 @@ class _State extends State<EventPage> {
               color: ThemeColors.stroke,
             ),
           ),
-          const Padding(
+          Padding(
             padding: const EdgeInsets.symmetric(horizontal: 24),
-            // child: as Widget,
-            //TicketList(key: UniqueKey(),
+            child: EventList(key: UniqueKey()),
           ),
         ],
       ),

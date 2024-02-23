@@ -15,9 +15,6 @@ class ControllerEvents {
   List<DataEvent> get events => eventNotifier.value;
   set events(List<DataEvent> value) => eventNotifier.value = value;
 
-  // test
-  //final newEvent = DataEvent(context: "");
-
   EventListController() {
     getEvents();
   }
@@ -28,10 +25,13 @@ class ControllerEvents {
       final instance = await SharedPreferences.getInstance();
       final response = instance.getStringList("eventos");
       if (response != null) {
+        /*
         events =
             response.map((e) => DataEvent.fromJson(jsonDecode(e))).toList();
+            */
+        if (kDebugMode) print("oiga2: $events");
       } else {
-        // events = addTicket();
+        instance.clear();
       }
     } catch (e) {
       if (kDebugMode) print("Error getTickets: $e");
@@ -47,6 +47,12 @@ class ControllerEvents {
   Future<Map<String, dynamic>> readEventsJson() async {
     Map<String, dynamic> jsonData =
         await loadJsonFromAssets('lib/assets/datasetAgenda.json');
+    return jsonData;
+  }
+
+  Future<Map<String, dynamic>> readAccountJson() async {
+    Map<String, dynamic> jsonData =
+        await loadJsonFromAssets('lib/assets/pubsub-services.json');
     return jsonData;
   }
 
