@@ -87,7 +87,7 @@ flutter:
     - .env
     - lib/assets/
     - lib/assets/images/
-    - lib/assets/datasetAgenda.json
+    # - lib/assets/datasetAgenda.json
     - lib/assets/google-services.json
     - lib/assets/pubsub-services.json
 

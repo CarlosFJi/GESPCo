@@ -57,10 +57,10 @@ class TicketModel {
         assignedEvent: map['assignedEvent']);
   }
 
-  String toJson() => json.encode(toMap());
+  String toJson() => jsonEncode(toMap());
 
   factory TicketModel.fromJson(String source) =>
-      TicketModel.fromMap(json.decode(source));
+      TicketModel.fromMap(jsonDecode(source));
 
   @override
   String toString() {

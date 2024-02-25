@@ -35,11 +35,11 @@ class _InfoWidgetState extends State<EventInfoWidget> {
                   valueListenable: controller.eventNotifier,
                   builder: (_, event, __) => event.isNotEmpty
                       ? Text.rich(TextSpan(
-                          text: "Tienes ",
+                          text: "Hay ",
                           style: FontStyles.captionBackground,
                           children: [
                             TextSpan(
-                              text: "${event.length} eventos \n",
+                              text: "${event.length} eventos en tu zona. \n",
                               style: FontStyles.captionBoldBackground,
                             )
                           ],

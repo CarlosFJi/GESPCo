@@ -35,7 +35,7 @@ class App extends StatelessWidget {
               user: ModalRoute.of(context)!.settings.arguments as UserModel?,
             ),
         "/barcode_scanner": (context) => const BarcodeScanner(),
-        "/eventos:": (context) => const EventPage(),
+        "/eventos:": (context) => EventPage(),
         "/crear_eventos": (context) => const CrearEventos(),
       },
     );

@@ -1,40 +1,58 @@
 import 'dart:convert';
-import 'dart:io';
 
 import 'package:flutter/foundation.dart';
 import 'package:gespco/src/services/readJson/readJson.dart';
 import 'package:gespco/src/shared/classes/dataEvent.dart';
 import 'package:flutter/services.dart';
-import 'package:path/path.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class ControllerEvents {
-  //final readingJSON = readingJson();
   final eventNotifier = ValueNotifier<List<DataEvent>>(<DataEvent>[]);
-  List<DataEvent> get events => eventNotifier.value;
+  List<DataEvent> get event => eventNotifier.value;
   set events(List<DataEvent> value) => eventNotifier.value = value;
+  final readJson = readingJson();
+  final listEvent = {"data": ""};
 
-  EventListController() {
+  ControllerEvents() {
     getEvents();
   }
 
+  List<DataEvent> addEvent() {
+    return [
+      DataEvent(
+          title: "Evento1",
+          id: "000",
+          description: "",
+          date: "10/04/2024",
+          cost: "10"),
+      DataEvent(
+          title: "Evento2",
+          id: "001",
+          description: "",
+          date: "11/04/2024",
+          cost: "15"),
+      DataEvent(
+          title: "Evento3",
+          id: "002",
+          description: "",
+          date: "12/04/2024",
+          cost: "5"),
+    ];
+  }
+
   void getEvents() async {
-    // TODO: Create getTickets
     try {
       final instance = await SharedPreferences.getInstance();
       final response = instance.getStringList("eventos");
       if (response != null) {
-        /*
         events =
             response.map((e) => DataEvent.fromJson(jsonDecode(e))).toList();
-            */
-        if (kDebugMode) print("oiga2: $events");
       } else {
         instance.clear();
+        events = addEvent();
       }
     } catch (e) {
-      if (kDebugMode) print("Error getTickets: $e");
+      if (kDebugMode) print("Error getEvents: $e");
     }
   }
 
@@ -48,6 +66,11 @@ class ControllerEvents {
     Map<String, dynamic> jsonData =
         await loadJsonFromAssets('lib/assets/datasetAgenda.json');
     return jsonData;
+  }
+
+  Future<Map<String, dynamic>> readEvents() async {
+    readJson.readCounter();
+    return await readEventsJson();
   }
 
   Future<Map<String, dynamic>> readAccountJson() async {

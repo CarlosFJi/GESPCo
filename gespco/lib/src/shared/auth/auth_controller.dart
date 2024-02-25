@@ -35,8 +35,8 @@ class AuthController {
     final metadata = buildMeta(userLogged.metadata!);
 
     final dataBQ = {
-      "userId": "${userLogged.name}",
-      "name": "${userLogged.name}",
+      "userId": "${userLogged.id}",
+      "nombre": "${userLogged.name}",
       "fecha_registro": "${metadata}",
       "role": RoleType.convertRole(RoleType.CLIENT),
       "ultimo_acceso": "${metadata}"
@@ -111,6 +111,7 @@ class AuthController {
   }
 
   Future<void> recoveryUser(context, instance) async {
+    final instance = await SharedPreferences.getInstance();
     final json = instance.get("user") as String;
     if (context.mounted) setUser(context, UserModel.fromJson(json));
     if (kDebugMode) print("User logged: $json");

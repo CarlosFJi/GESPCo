@@ -1,12 +1,11 @@
+import 'dart:convert';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:gespco/src/shared/classes/dataEvent.dart';
 import 'package:gespco/src/shared/classes/dataUser.dart';
 
 class Firestore {
   static void newUser(UserModel data) async {
-    final colection = Firestore.getEvents("user_access");
-    print("colection: $colection");
-
     Firestore.addOrUpdateWithId(
         "user_access", data.id!, UserModel.userToJson(data));
   }
@@ -15,7 +14,10 @@ class Firestore {
   static Future<List<DataEvent>> getEvents(String col) async {
     return (await FirebaseFirestore.instance.collection(col).get())
         .docs
-        .map((item) => DataEvent.fromMap(item["data"].data()))
+        .map((item) => DataEvent(
+            title: item["title"]!,
+            description: item["description"]!,
+            id: item["id"]!))
         .toList();
   }
 
@@ -23,29 +25,11 @@ class Firestore {
   static Future<List<DataEvent>> getAllEntries(String collection) async {
     return (await FirebaseFirestore.instance.collection(collection).get())
         .docs
-        .map((item) => DataEvent.fromMap(item.data()))
+        .map((item) => DataEvent(
+            title: item["title"],
+            description: item["description"],
+            id: item["id"]))
         .toList();
-  }
-
-  // Obtener por id
-  static Future<List<DataEvent>> getAllEventsSortedById(
-      String collection) async {
-    return (await FirebaseFirestore.instance
-            .collection(collection)
-            .orderBy("id", descending: false)
-            .get())
-        .docs
-        .map((item) => DataEvent.fromMap(item.data()))
-        .toList();
-  }
-
-  // Actualiar entry
-  static Future updateEntryWithId(
-      String collection, String documentId, Map<String, dynamic> data) async {
-    await FirebaseFirestore.instance
-        .collection(collection)
-        .doc(documentId)
-        .update(data);
   }
 
   // Añadir por id
@@ -65,4 +49,32 @@ class Firestore {
         .doc(documentId)
         .delete();
   }
+
+  // Actualiar entry
+  static Future updateEntryWithId(
+      String collection, String documentId, Map<String, dynamic> data) async {
+    await FirebaseFirestore.instance
+        .collection(collection)
+        .doc(documentId)
+        .update(data);
+  }
+
+  // Obtener por id
+  /*
+  static Future<List<DataEvent>> getAllEventsSortedById(
+      String collection) async {
+    return (await FirebaseFirestore.instance
+            .collection(collection)
+            .orderBy("id", descending: false)
+            .get())
+        .docs
+        .map((item) => DataEvent.fromMap(jsonEncode(item)))
+        .toList();
+  }
+
+
+
+
+
+  */
 }

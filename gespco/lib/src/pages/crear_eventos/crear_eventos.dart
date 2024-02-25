@@ -70,7 +70,11 @@ class _crearEventoScreenState extends State<CrearEventos> {
       }
       final defaultImage = Environment.imageDefault;
 
-      final eventCheck = DataEvent(context: contextEvent);
+      final eventCheck = DataEvent(
+        id: contextEvent["id"],
+        title: contextEvent["title"],
+        description: contextEvent["description"],
+      );
       print("Event: $eventCheck");
       // TODO: Register event on ddbb
       if (context.mounted) {

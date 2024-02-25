@@ -13,11 +13,11 @@ class EventTile extends StatelessWidget {
       child: ListTile(
         contentPadding: EdgeInsets.zero,
         title: Text(
-          data.context.title,
+          data.title,
           style: FontStyles.titleListTile,
         ),
         subtitle: Text(
-          "Vence en: ${data.context.address}",
+          "Vence en: ${data.description}",
           style: FontStyles.captionBody,
         ),
         trailing: Text.rich(TextSpan(
@@ -25,7 +25,7 @@ class EventTile extends StatelessWidget {
           style: FontStyles.trailingRegular,
           children: [
             TextSpan(
-              text: data.context.location,
+              text: data.description,
               style: FontStyles.trailingBold,
             ),
           ],

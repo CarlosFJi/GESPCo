@@ -1,6 +1,4 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
-import 'package:gespco/src/services/storage/firestore.dart';
 import 'package:gespco/src/shared/classes/dataEvent.dart';
 import 'package:gespco/src/shared/classes/dataUser.dart';
 import 'package:gespco/src/shared/classes/dataTicket.dart';
@@ -43,12 +41,6 @@ class DBManage {
     return database.insert("tickets", tickets.toMap());
   }
 
-  Future<int> insertEvent(DataEvent events) async {
-    Database database = await initizateDb();
-
-    return database.insert("tickets", events.toMap());
-  }
-
   // DELETE
   Future<int> deleteUser(UserModel user) async {
     Database database = await initizateDb();
@@ -82,16 +74,3 @@ class DBManage {
             ));
   }
 }
-
-
-
-
-/*
- //TODO: Activar DB en móvil
-    String os = Platform.operatingSystem;
-    print("OS: $os");
-    if (os && Platform.isAndroid || Platform.isIOS) {
-
-      print("dispositivo móvil");
-    }
-*/

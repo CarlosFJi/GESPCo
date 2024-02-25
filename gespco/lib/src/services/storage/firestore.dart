@@ -51,26 +51,4 @@ class DBController {
     final document = await firestore.collection("user_access").add(data);
     return document.id;
   }
-
-  void getUser() {
-    var cabesa = null;
-    CollectionReference users =
-        FirebaseFirestore.instance.collection('user_access');
-    users.doc("").get().then((_) {
-      cabesa = _;
-      print("DOC USER: $_");
-    });
-    if (cabesa != null) print("CABESA GET: $cabesa");
-  }
-
-  void updateUser() {
-    Stream collectionStream =
-        FirebaseFirestore.instance.collection('user_access').snapshots();
-    print("COLLECTION STREAM: $collectionStream");
-    Stream documentStream = FirebaseFirestore.instance
-        .collection('user_access')
-        .doc('0DXiWRIa021rK0L6c4xx')
-        .snapshots(includeMetadataChanges: true);
-    print("Document STREAM: $documentStream");
-  }
 }

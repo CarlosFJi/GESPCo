@@ -12,34 +12,15 @@ import 'package:gespco/src/shared/themes/theme_colors.dart';
 import 'package:animated_card/animated_card.dart';
 
 class EventPage extends StatefulWidget {
-  const EventPage({super.key});
+  EventPage({super.key});
 
   @override
   State<EventPage> createState() => _State();
 }
 
 class _State extends State<EventPage> {
-  List _dataToDisplay = [];
-  List<dynamic> listEvent = [];
-  final controller = ControllerEvents();
-  final readJson = readingJson();
-
-  List<Context> contextList = [];
-
-  void getEvents() {
-    readingJson().readCounter();
-
-    controller.readEventsJson().then((v) => {
-          setState(() {
-            contextList = v["data"];
-            _dataToDisplay.add(contextList);
-          })
-        });
-  }
-
   @override
   Widget build(BuildContext context) {
-    if (contextList == null) getEvents();
     return SingleChildScrollView(
       child: Column(
         children: [
