@@ -1,6 +1,8 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:gespco/src/pages/barcode_scanner/barcode_scanner.dart';
+import 'package:gespco/src/pages/crear_eventos/crear_eventos.dart';
 import 'package:gespco/src/pages/event_list/events.dart';
 import 'package:gespco/src/pages/extract/extract.dart';
 import 'package:gespco/src/pages/home/home_controller.dart';
@@ -11,7 +13,7 @@ import 'package:gespco/src/shared/themes/theme_colors.dart';
 
 class MyHomePage extends StatefulWidget {
   final UserModel? user;
-  MyHomePage({Key? key, required this.user}) : super(key: key);
+  const MyHomePage({Key? key, required this.user}) : super(key: key);
 
   @override
   _HomePageState createState() => _HomePageState();
@@ -20,7 +22,13 @@ class MyHomePage extends StatefulWidget {
 final List<String> items = ["Cerrar sesión"];
 
 class _HomePageState extends State<MyHomePage> {
-  final pages = [EventPage(), const TicketsPage(), const ExtractPage()];
+  final pages = [
+    const TicketsPage(),
+    const EventPage(),
+    const ExtractPage(),
+    const BarcodeScanner(),
+    const CrearEventos()
+  ];
   final controller = HomeController();
 
   // TODO: Insertar usuarios - obtener tickets - mostrar eventos y disponibilidad
@@ -29,11 +37,9 @@ class _HomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    // ModalRoute.of(context)!.settings.arguments as UserModel?
     if (widget.user == null) {
       controller.checkUser(context);
     }
-
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(152),
@@ -86,7 +92,6 @@ class _HomePageState extends State<MyHomePage> {
                     onChanged: (value) {
                       setState(() {
                         controller.signOut(context);
-                        // TODO: Cerrar sesión
                         if (kDebugMode) print("Seleccionado: $value");
                       });
                     },
@@ -120,7 +125,6 @@ class _HomePageState extends State<MyHomePage> {
             IconButton(
                 onPressed: () {
                   controller.setPage(0);
-                  setState(() {});
                 },
                 icon: Icon(
                   Icons.home,
@@ -130,9 +134,10 @@ class _HomePageState extends State<MyHomePage> {
                 )),
             GestureDetector(
               onTap: () async {
-                controller.setPage(1);
+                controller.setPage(3);
+                String navTo = controller.navigationCenter(widget.user?.id);
                 setState(() {
-                  Navigator.of(context).pushNamed("/eventos");
+                  if (navTo.isNotEmpty) Navigator.of(context).pushNamed(navTo);
                 });
               },
               child: Container(
@@ -150,7 +155,12 @@ class _HomePageState extends State<MyHomePage> {
             IconButton(
                 onPressed: () {
                   controller.setPage(2);
-                  setState(() {});
+                  String navTo = controller.navigationRight(widget.user?.id);
+                  setState(() {
+                    if (navTo.isNotEmpty) {
+                      Navigator.of(context).pushNamed(navTo);
+                    }
+                  });
                 },
                 icon: Icon(
                   Icons.description_outlined,

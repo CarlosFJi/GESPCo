@@ -1,5 +1,4 @@
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
 import 'package:gespco/src/shared/classes/dataTicket.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -11,16 +10,24 @@ class TicketListController {
   final newTicket = TicketModel();
 
   addTicket() {
-    final newTicket = TicketModel(
-        assignedEvent: "eventAssigned",
-        barcode: "14324234",
-        dueDate: "24/02/2024",
-        id: "001",
-        name: "cabesa",
-        status: "open",
-        value: 0.10);
-
-    return [newTicket];
+    return [
+      TicketModel(
+          assignedEvent: "003",
+          barcode: "14324234",
+          dueDate: "24/04/2024",
+          id: "001",
+          name: "Evento 3",
+          status: "open",
+          value: 100),
+      TicketModel(
+          assignedEvent: "103",
+          barcode: "14324234",
+          dueDate: "10/04/2024",
+          id: "001",
+          name: "Evento 0",
+          status: "open",
+          value: 80)
+    ];
   }
 
   TicketListController() {

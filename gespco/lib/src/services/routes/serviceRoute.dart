@@ -1,9 +1,6 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:gespco/src/shared/auth/auth_controller.dart';
 import 'package:gespco/src/shared/classes/RoleType.dart';
-import 'package:gespco/src/shared/classes/dataUser.dart';
 
 void onGenerateAppViews(
     // AppStatus state,

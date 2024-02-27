@@ -1,4 +1,3 @@
-import 'dart:convert';
 
 class RoleType {
   static const ADMIN = 0;

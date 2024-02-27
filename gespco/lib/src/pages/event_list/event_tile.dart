@@ -17,19 +17,12 @@ class EventTile extends StatelessWidget {
           style: FontStyles.titleListTile,
         ),
         subtitle: Text(
-          "Vence en: ${data.description}",
+          "Vence en: ${data.date}",
           style: FontStyles.captionBody,
         ),
-        trailing: Text.rich(TextSpan(
-          text: "€",
-          style: FontStyles.trailingRegular,
-          children: [
-            TextSpan(
-              text: data.description,
-              style: FontStyles.trailingBold,
-            ),
-          ],
-        )),
+        trailing: Text(
+          "${data.cost} €",
+        ),
       ),
     );
   }

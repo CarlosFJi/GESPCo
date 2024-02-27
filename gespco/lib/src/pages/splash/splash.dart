@@ -4,8 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:gespco/src/services/routes/serviceRoute.dart';
 import 'package:gespco/src/shared/auth/auth_controller.dart';
 import 'package:gespco/src/shared/themes/theme_colors.dart';
+import 'package:logger/logger.dart';
 
 final auth = AuthController();
+final log = Logger();
 
 class SplashPage extends StatelessWidget {
   const SplashPage({Key? key}) : super(key: key);
@@ -14,8 +16,7 @@ class SplashPage extends StatelessWidget {
   Widget build(BuildContext context) {
     Timer(const Duration(seconds: 2), () {
       if (auth.existUser() == null) onGenerateAppViews(auth, context);
-
-      print("Nuevo inicio de sesión: ${DateTime.now()}");
+      log.i("Nuevo inicio de sesión: ${DateTime.now()}");
     });
 
     return const Scaffold(

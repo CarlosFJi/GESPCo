@@ -5,7 +5,6 @@ import "package:gespco/src/services/readJson/readJson.dart";
 import "package:gespco/src/shared/environment/environment.dart";
 import "package:googleapis/pubsub/v1.dart";
 import 'package:googleapis_auth/auth_io.dart';
-import 'package:http/http.dart';
 import "../providers/providers.dart";
 
 class PubSubService {
@@ -34,20 +33,21 @@ class PubSubService {
     final String messageData = json;
     final List<int> messageBytes = utf8.encode(messageData);
     final String messageBase64 = base64Encode(messageBytes);
-    print('pubsub messageData=${messageData}');
+    print('pubsub messageData=$messageData');
     final PublishRequest request = PublishRequest(
       messages: <PubsubMessage>[
         PubsubMessage(data: messageBase64),
       ],
     );
 
-    final String fullTopicName = 'projects/gespco-cfj5b1/topics/$topic';
+    final String fullTopicName =
+        'projects/${Environment.project}/topics/$topic';
 
-    print('pubsub fullTopicName=${fullTopicName}');
+    print('pubsub fullTopicName=$fullTopicName');
 
     final PublishResponse response =
         await pubsubApi.projects.topics.publish(request, fullTopicName);
-    print('pubsub response messageId=${response}');
+    print('pubsub response messageId=$response');
     return response.messageIds!;
   }
 }

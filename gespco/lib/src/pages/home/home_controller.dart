@@ -23,9 +23,35 @@ class HomeController {
     auth.recoveryUser(context, instance);
   }
 
-  // TODO: Manegement role
-  void checkRole(id) {
-    loginController.checkManagement(id);
+  String checkRole(id) {
+    return loginController.checkManagement(id);
+  }
+
+  // TODO: Route file
+  String navigationRight(id) {
+    final role = checkRole(id);
+    switch (role) {
+      case "admin":
+        return "/eventos";
+      case "moderator":
+        return "/tickets";
+      case "client":
+        return "/tickets";
+    }
+    return "";
+  }
+
+  String navigationCenter(id) {
+    final role = checkRole(id);
+    switch (role) {
+      case "admin":
+        return "/crear_eventos";
+      case "moderator":
+        return "/barcode_scanner";
+      case "client":
+        return "/eventos";
+    }
+    return "";
   }
 
   Future<void> signOut(BuildContext context) async {

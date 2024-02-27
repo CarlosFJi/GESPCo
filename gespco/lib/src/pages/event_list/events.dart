@@ -1,18 +1,13 @@
-import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:gespco/src/pages/event_list/event_info.dart';
 import 'package:gespco/src/pages/event_list/event_list.dart';
-import 'package:gespco/src/pages/event_list/events_controller.dart';
-import 'package:gespco/src/services/readJson/readJson.dart';
-import 'package:gespco/src/services/storage/firestore_.dart';
-import 'package:gespco/src/shared/classes/dataEvent.dart';
 import 'package:gespco/src/shared/themes/font_style.dart';
 import 'package:gespco/src/shared/themes/theme_colors.dart';
 import 'package:animated_card/animated_card.dart';
 
 class EventPage extends StatefulWidget {
-  EventPage({super.key});
+  const EventPage({super.key});
 
   @override
   State<EventPage> createState() => _State();

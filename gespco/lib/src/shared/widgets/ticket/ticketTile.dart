@@ -25,7 +25,7 @@ class TicketTile extends StatelessWidget {
           style: FontStyles.trailingRegular,
           children: [
             TextSpan(
-              text: "${data.value!.toStringAsFixed(2)}",
+              text: data.value!.toStringAsFixed(2),
               style: FontStyles.trailingBold,
             ),
           ],

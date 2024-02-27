@@ -1,9 +1,10 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_cupertino_date_picker_fork/flutter_cupertino_date_picker_fork.dart';
 import 'package:gespco/src/shared/widgets/buttons/rounded_btn/rounded_button.dart';
 
 class AnimatedDatePickerPopup extends StatefulWidget {
+  const AnimatedDatePickerPopup({super.key});
+
   @override
   _AnimatedDatePickerPopupState createState() =>
       _AnimatedDatePickerPopupState();

@@ -1,4 +1,3 @@
-import 'dart:convert';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:gespco/src/shared/classes/dataEvent.dart';
@@ -8,6 +7,11 @@ class Firestore {
   static void newUser(UserModel data) async {
     Firestore.addOrUpdateWithId(
         "user_access", data.id!, UserModel.userToJson(data));
+  }
+
+  static void newEvent(DataEvent data) async {
+    Firestore.addOrUpdateWithId(
+        "events_managed", data.id!, DataEvent.toJson(data));
   }
 
   // Obtener entradas

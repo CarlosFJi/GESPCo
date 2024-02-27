@@ -37,9 +37,9 @@ class AuthController {
     final dataBQ = {
       "userId": "${userLogged.id}",
       "nombre": "${userLogged.name}",
-      "fecha_registro": "${metadata}",
+      "fecha_registro": metadata,
       "role": RoleType.convertRole(RoleType.CLIENT),
-      "ultimo_acceso": "${metadata}"
+      "ultimo_acceso": metadata
     };
     // TODO: ENVIRONMENT TOPICS
     final messageId = await _pbService.publish("new_user", jsonEncode(dataBQ));

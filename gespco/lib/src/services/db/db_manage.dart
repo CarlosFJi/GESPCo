@@ -1,5 +1,4 @@
 import 'package:flutter/foundation.dart';
-import 'package:gespco/src/shared/classes/dataEvent.dart';
 import 'package:gespco/src/shared/classes/dataUser.dart';
 import 'package:gespco/src/shared/classes/dataTicket.dart';
 import 'package:sqflite/sqflite.dart';
@@ -24,9 +23,7 @@ class DBManage {
   // TODO: CREATE SQL_SENTENCES
   static Future<void> createTables(Database database) async {
     await database.execute(
-        "CREATE TABLE users (id INTEGER PRIMARY KEY, name TEXT, photoURL TEXT, role TEXT);" +
-            "CREATE TABLE events (id INTEGER PRIMARY KEY, description TEXT, title TEXT);" +
-            "CREATE TABLE tickets (id TEXT, name TEXT, dueDate TEXT, double DOUBLE, barcode TEXT));");
+        "CREATE TABLE users (id INTEGER PRIMARY KEY, name TEXT, photoURL TEXT, role TEXT);CREATE TABLE events (id INTEGER PRIMARY KEY, description TEXT, title TEXT);CREATE TABLE tickets (id TEXT, name TEXT, dueDate TEXT, double DOUBLE, barcode TEXT));");
   }
 
   // INSERT

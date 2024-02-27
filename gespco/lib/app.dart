@@ -17,7 +17,7 @@ class App extends StatelessWidget {
       DeviceOrientation.portraitUp,
     ]);
     SystemChrome.setSystemUIOverlayStyle(
-        SystemUiOverlayStyle(statusBarColor: ThemeColors.background));
+        const SystemUiOverlayStyle(statusBarColor: ThemeColors.background));
   }
 
   @override
@@ -35,7 +35,7 @@ class App extends StatelessWidget {
               user: ModalRoute.of(context)!.settings.arguments as UserModel?,
             ),
         "/barcode_scanner": (context) => const BarcodeScanner(),
-        "/eventos:": (context) => EventPage(),
+        "/eventos:": (context) => const EventPage(),
         "/crear_eventos": (context) => const CrearEventos(),
       },
     );

@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:uuid/uuid.dart';
 
-final uuid = Uuid();
+const uuid = Uuid();
 
 class TicketModel {
   final String id = uuid.v5(Uuid.NAMESPACE_URL, 'GESPCo');

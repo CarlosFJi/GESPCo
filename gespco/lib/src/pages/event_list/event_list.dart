@@ -4,7 +4,7 @@ import 'package:gespco/src/pages/event_list/events_controller.dart';
 import 'package:gespco/src/shared/classes/dataEvent.dart';
 
 class EventList extends StatefulWidget {
-  EventList({Key? key}) : super(key: key);
+  const EventList({Key? key}) : super(key: key);
 
   @override
   _EventListWidgetState createState() => _EventListWidgetState();

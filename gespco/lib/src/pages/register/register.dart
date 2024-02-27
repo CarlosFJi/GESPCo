@@ -1,17 +1,11 @@
 // ignore_for_file: library_private_types_in_public_api
 
-import 'dart:convert';
 
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:gespco/src/services/storage/firestore_.dart';
 // import 'package:gespco/src/services/storage/firestore.dart';
 // import 'package:gespco/src/services/routes/serviceRoute.dart';
 import 'package:gespco/src/shared/auth/auth_controller.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:gespco/src/shared/classes/RoleType.dart';
 import 'package:gespco/src/shared/classes/dataUser.dart';
-import 'package:gespco/src/shared/environment/environment.dart';
 import 'package:gespco/src/shared/widgets/buttons/rounded_btn/rounded_button.dart';
 import 'package:flutter_progress_hud/flutter_progress_hud.dart';
 
@@ -38,22 +32,6 @@ class Register extends StatefulWidget {
   @override
   _RegistrationScreenState createState() => _RegistrationScreenState();
 }
-// STREAM BQ https://extensions.dev/extensions/firebase/firestore-bigquery-export
-
-/*
-{ 
-  data: [{
-    insertId: int;
-    json: {
-      timestamp: int;
-      event_id: int;
-      document_name: string;
-      document_id: int;
-      operation: ChangeType;
-      data: string;
-    },
-  }]
-}*/
 
 class _RegistrationScreenState extends State<Register> {
   final controller = AuthController();
@@ -93,6 +71,7 @@ class _RegistrationScreenState extends State<Register> {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -109,7 +88,19 @@ class _RegistrationScreenState extends State<Register> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.stretch,
+                verticalDirection: VerticalDirection.down,
                 children: [
+                  Positioned(
+                      top: size.height * 0.01,
+                      left: 0,
+                      right: 0,
+                      child: const SizedBox(
+                          width: 60,
+                          height: 80,
+                          child: FittedBox(
+                            fit: BoxFit.contain,
+                            child: Text("Registrate en GESPCO"),
+                          ))),
                   TextField(
                       keyboardType: TextInputType.emailAddress,
                       textAlign: TextAlign.center,
