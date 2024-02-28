@@ -116,7 +116,7 @@ class AuthController {
     final instance = await SharedPreferences.getInstance();
     if (instance != null) {
       final json = instance.get("user") as String;
-      if (json != null && context.mounted) {
+      if (json != null) {
         setUser(context, UserModel.fromJson(json));
       }
       return;

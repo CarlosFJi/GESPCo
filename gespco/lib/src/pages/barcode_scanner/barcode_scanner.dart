@@ -69,7 +69,8 @@ class _BarcodeScannerState extends State<BarcodeScanner> {
                   ),
                   leading: BackButton(
                     color: ThemeColors.background,
-                    onPressed: () => Navigator.of(context).pop(),
+                    onPressed: () =>
+                        Navigator.pushReplacementNamed(context, "/home"),
                   ),
                 ),
                 body: Column(

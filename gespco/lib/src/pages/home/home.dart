@@ -2,14 +2,14 @@ import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:gespco/src/pages/barcode_scanner/barcode_scanner.dart';
-import 'package:gespco/src/pages/crear_eventos/crear_eventos.dart';
 import 'package:gespco/src/pages/event_list/events.dart';
-import 'package:gespco/src/pages/extract/extract.dart';
 import 'package:gespco/src/pages/home/home_controller.dart';
 import 'package:gespco/src/pages/tickets/tickets.dart';
 import 'package:gespco/src/shared/classes/dataUser.dart';
 import 'package:gespco/src/shared/themes/font_style.dart';
 import 'package:gespco/src/shared/themes/theme_colors.dart';
+
+import '../crear_eventos/crear_eventos.dart';
 
 class MyHomePage extends StatefulWidget {
   final UserModel? user;
@@ -21,19 +21,21 @@ class MyHomePage extends StatefulWidget {
 
 final List<String> items = ["Cerrar sesión"];
 final controller = HomeController();
-
-final pages = [
-  const TicketsPage(),
-  const ExtractPage(),
-];
 String? selectedValue;
+final pages = [
+  const EventPage(),
+  const CrearEventos(),
+  const BarcodeScanner(),
+  const TicketsPage()
+];
 
 class _HomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-    if (context != null && widget.user == null) {
+    if (context != null && widget != null && widget.user == null) {
       controller.checkUser(context);
     }
+
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(152),
@@ -128,11 +130,7 @@ class _HomePageState extends State<MyHomePage> {
                 )),
             GestureDetector(
               onTap: () async {
-                controller.setPage(3);
-                String navTo = controller.navigationCenter(widget.user?.id);
-                setState(() {
-                  if (navTo.isNotEmpty) Navigator.of(context).pushNamed(navTo);
-                });
+                controller.setPage(1);
               },
               child: Container(
                 width: 56,
@@ -148,12 +146,8 @@ class _HomePageState extends State<MyHomePage> {
             ),
             IconButton(
                 onPressed: () {
-                  controller.setPage(2);
-                  String navTo = controller.navigationRight(widget.user?.id);
                   setState(() {
-                    if (navTo.isNotEmpty) {
-                      Navigator.of(context).pushNamed(navTo);
-                    }
+                    controller.setPage(2);
                   });
                 },
                 icon: Icon(

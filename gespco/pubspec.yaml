@@ -50,7 +50,7 @@ dependencies:
   flutter_cupertino_date_picker_fork: 1.0.7
   flutter_masked_text2: ^0.9.1
   animated_card: ^2.0.0
-  firebase_auth: ^4.11.0
+  firebase_auth: ^4.10.1
   qr_flutter: ^4.1.0
   flutter_progress_hud: ^2.0.2
   modal_progress_hud_nsn: ^0.5.0

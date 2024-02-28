@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "994700819032",
+    "project_id": "gespco-cfj5b1",
+    "storage_bucket": "gespco-cfj5b1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:994700819032:android:099e81b19efd411860282d",
+        "android_client_info": {
+          "package_name": "com.gespco.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "994700819032-4k76bf32m5igv8s9cl5s3dj6fpk0agdu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyALmDYd0i08X7TtFKN8VllB1qzsJZ3IAxM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "994700819032-4k76bf32m5igv8s9cl5s3dj6fpk0agdu.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "994700819032-deone7p116lefpomnllmq0lv278gu5sg.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.gespco.app.RunnerTests"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
