@@ -1,6 +1,22 @@
-# GESPCo
+GESPco
+----------
 ### Gestor de ESPéctaculos y Carrera oficial.
 
+Applicación en Flutter, conecta con diversos servicios para gestionar la creación de eventos, tickets y los distintos perfiles de usuarios.
+Se hace uso de los siguientes servicios:
+
+- Google Cloud Platform:
+  -  Pub/Service
+  -  BigQuery
+
+- Firebase:
+  - Firebase Auth
+  - Firestore Database
+
+- Google API:
+  - Google-Sign-In
+  - Google-ML-Kit ( Barcode Scanner )
+  
 # Scaffolding
     /lib
         /assets
