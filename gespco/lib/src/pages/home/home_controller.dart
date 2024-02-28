@@ -19,8 +19,7 @@ class HomeController {
   }
 
   void checkUser(context) async {
-    final instance = await SharedPreferences.getInstance();
-    auth.recoveryUser(context, instance);
+    auth.recoveryUser(context);
   }
 
   String checkRole(id) {
@@ -34,7 +33,7 @@ class HomeController {
       case "admin":
         return "/eventos";
       case "moderator":
-        return "/tickets";
+        return "/home";
       case "client":
         return "/tickets";
     }

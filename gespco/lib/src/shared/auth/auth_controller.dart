@@ -8,18 +8,22 @@ import "package:gespco/src/services/storage/firestore_.dart";
 import "package:gespco/src/shared/classes/RoleType.dart";
 import "package:gespco/src/shared/classes/dataUser.dart";
 import "package:gespco/src/shared/environment/environment.dart";
+import "package:logger/logger.dart";
 import "package:shared_preferences/shared_preferences.dart";
 
 class AuthController {
   UserModel? _user;
   UserModel get user => _user!;
   final _auth = FirebaseAuth.instance;
+  final log = Logger();
+  final date = DateTime.now();
 
   final _pbService = const PubSubService();
 
   void loginUser(context, AuthCredential credens) async {
     final result = (await _auth.signInWithCredential(credens));
     final logged = result.user;
+
     pathUser(context, logged!.email, result.credential?.providerId, false);
   }
 
@@ -43,27 +47,24 @@ class AuthController {
     };
     // TODO: ENVIRONMENT TOPICS
     final messageId = await _pbService.publish("new_user", jsonEncode(dataBQ));
+    log.i("Nuevo registro: ${date}, ${dataBQ["userId"]}, $messageId");
+
     print("MessageId Pub/Sub: $messageId");
   }
 
   Future<UserModel> pathUser(context, email, password, isRegister) async {
     final defaultImage = Environment.imageDefault;
-    final isNew = await _auth.fetchSignInMethodsForEmail(email);
-
     var userFormat = {};
     if (isRegister == true) {
       final newUser = await _auth.createUserWithEmailAndPassword(
           email: email, password: password);
 
-      print("Nuevo acceso: $newUser");
-
       if (newUser.credential != null) {
-        final firebaseUser =
-            (await _auth.signInWithCredential(newUser.credential!)).user;
+        (await _auth.signInWithCredential(newUser.credential!)).user;
       }
       final userData = newUser.user;
       final imageURL = userData!.photoURL;
-
+      log.i("Nuevo Registro: ${date}, ${userData}");
       userFormat["id"] = userData.uid;
       userFormat["email"] = email;
       userFormat["name"] = email.split("@")[0];
@@ -92,6 +93,7 @@ class AuthController {
 
       Firestore.newUser(userLogged);
       setUser(context, userLogged);
+      log.i("Inicio sesión, ${userLogged.id}");
       if (isRegister == true) pubSubServiceWelcome(userLogged);
       return userLogged;
     }
@@ -110,21 +112,21 @@ class AuthController {
     return;
   }
 
-  Future<void> recoveryUser(context, instance) async {
+  Future<void> recoveryUser(context) async {
     final instance = await SharedPreferences.getInstance();
-    final json = instance.get("user") as String;
-    if (context.mounted) setUser(context, UserModel.fromJson(json));
-    if (kDebugMode) print("User logged: $json");
-    return;
+    if (instance != null) {
+      final json = instance.get("user") as String;
+      if (json != null && context.mounted) {
+        setUser(context, UserModel.fromJson(json));
+      }
+      return;
+    }
   }
 
   // Recupera el usuario desde la instancia en memoria
-  Future<void> currentUser(BuildContext context) async {
-    final instance = await SharedPreferences.getInstance();
-    final uInstance = instance.get("user");
-    if (uInstance == null && context.mounted) {
-      await recoveryUser(context, instance);
-      return;
+  void currentUser(BuildContext context) async {
+    if (context.mounted) {
+      await recoveryUser(context);
     } else {
       if (context.mounted) Navigator.pushReplacementNamed(context, "/splash");
     }

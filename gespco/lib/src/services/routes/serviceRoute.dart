@@ -2,10 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gespco/src/shared/auth/auth_controller.dart';
 import 'package:gespco/src/shared/classes/RoleType.dart';
 
-void onGenerateAppViews(
-    // AppStatus state,
-    AuthController auth,
-    context) {
+void onGenerateAppViews(AuthController auth, context) {
   final exist = auth.existUser();
   if (exist != null) {
     if (context.mounted && exist as bool) {
@@ -21,15 +18,4 @@ void onGenerateAppViews(
   } else {
     Navigator.pushNamed(context, "/login");
   }
-
-  /*
-  if (auth.user.role == RoleType.ADMIN) {
-    print('Hi ADMIN!');
-  } else if (auth.user.role == RoleType.MODERATOR) {
-    print('Hi Moderator');
-  } else {
-    print('Hi Client');
-
-  }
-  */
 }

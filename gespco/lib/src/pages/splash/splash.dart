@@ -7,16 +7,14 @@ import 'package:gespco/src/shared/themes/theme_colors.dart';
 import 'package:logger/logger.dart';
 
 final auth = AuthController();
-final log = Logger();
 
 class SplashPage extends StatelessWidget {
   const SplashPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    Timer(const Duration(seconds: 2), () {
-      if (auth.existUser() == null) onGenerateAppViews(auth, context);
-      log.i("Nuevo inicio de sesión: ${DateTime.now()}");
+    Timer(const Duration(milliseconds: 550), () {
+      onGenerateAppViews(auth, context);
     });
 
     return const Scaffold(

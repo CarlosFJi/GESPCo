@@ -20,24 +20,18 @@ class MyHomePage extends StatefulWidget {
 }
 
 final List<String> items = ["Cerrar sesión"];
+final controller = HomeController();
+
+final pages = [
+  const TicketsPage(),
+  const ExtractPage(),
+];
+String? selectedValue;
 
 class _HomePageState extends State<MyHomePage> {
-  final pages = [
-    const TicketsPage(),
-    const EventPage(),
-    const ExtractPage(),
-    const BarcodeScanner(),
-    const CrearEventos()
-  ];
-  final controller = HomeController();
-
-  // TODO: Insertar usuarios - obtener tickets - mostrar eventos y disponibilidad
-  // final operations = DBManage();
-  String? selectedValue;
-
   @override
   Widget build(BuildContext context) {
-    if (widget.user == null) {
+    if (context != null && widget.user == null) {
       controller.checkUser(context);
     }
     return Scaffold(
@@ -59,7 +53,7 @@ class _HomePageState extends State<MyHomePage> {
                     ]),
               ),
               subtitle: Text(
-                "Aquí mostraremos los distintos eventos sino se tiene al menos 1 ticket, en este caso, mostraremos el espectaculos del ticket que poseemos.",
+                "Aquí mostraremos los distintos tickets o eventos.",
                 style: FontStyles.captionShape,
               ),
               trailing: Container(

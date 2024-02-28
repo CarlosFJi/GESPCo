@@ -11,23 +11,21 @@ import 'package:logger/logger.dart';
 
 final auth = AuthController();
 final log = Logger();
+final date = DateTime.now();
+final management = Environment.adminUser;
+final moderator = Environment.moderators;
+const googleSignin = GoogleSignInScreen();
 
 class LoginController {
-  final googleSignin = const GoogleSignInScreen();
-  final management = Environment.adminUser;
-  final moderator = Environment.moderators;
-
   String checkManagement(id) {
     List<dynamic> listModerator = jsonDecode(moderator!);
 
-    if (id != null || id != null && moderator != null) {
+    if (id != null && management != null) {
       if (management == id) {
         return "admin";
       }
-      if (listModerator.isNotEmpty) {
-        final exist = listModerator.where((element) => element == id);
-        return exist != null ? "moderator" : "client";
-      }
+      final exist = listModerator.where((element) => element == id);
+      return exist.isNotEmpty ? "moderator" : "client";
     }
     return "client";
   }
@@ -51,13 +49,14 @@ class LoginController {
         accessToken: googleSignInAuthentication.accessToken);
 
     if (context.mounted) auth.loginUser(context, credential);
-    final check = checkManagement(auth.user.id);
-    log.i("Inicio sesión: ${DateTime.now}, $check, ${auth.user.id}");
+    log.i("Inicio sesión $date, ${auth.user.id}");
+
+    checkManagement(auth.user.id);
   }
 
   Future<void> signOut(BuildContext context) async {
     await GoogleSignIn().signOut();
-    log.i("Cierre sesión: ${DateTime.now}: ${auth.user.id}");
+    log.i("Cierre sesión: $date, ${auth.user.id}");
     if (context.mounted) auth.signOut(context);
   }
 }

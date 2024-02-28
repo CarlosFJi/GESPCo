@@ -12,10 +12,10 @@ class LoginPage extends StatefulWidget {
   _LoginPageState createState() => _LoginPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
-  final controller = LoginController();
-  final auth = AuthController();
+final controller = LoginController();
+final auth = AuthController();
 
+class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
