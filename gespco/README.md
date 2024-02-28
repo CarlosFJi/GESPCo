@@ -1,6 +1,22 @@
-# GESPCo
+GESPco
+----------
 ### Gestor de ESPéctaculos y Carrera oficial.
 
+Applicación en Flutter, conecta con diversos servicios para gestionar la creación de eventos, tickets y los distintos perfiles de usuarios.
+Se hace uso de los siguientes servicios:
+
+- Google Cloud Platform:
+  -  Pub/Service
+  -  BigQuery
+
+- Firebase:
+  - Firebase Auth
+  - Firestore Database
+
+- Google API:
+  - Google-Sign-In
+  - Google-ML-Kit ( Barcode Scanner )
+  
 # Scaffolding
     /lib
         /assets
@@ -32,14 +48,11 @@
     `bash
 flutterfire configure`
 
-Tras esto, lanzar: 
+## Getting Started
+
 `bash
 flutter pub get
 flutter run`
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
 
 A few resources to get you started if this is your first Flutter project:
 
