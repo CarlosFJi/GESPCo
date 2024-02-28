@@ -1,40 +1,62 @@
-import 'package:flutter/foundation.dart';
+import 'dart:async';
+import 'dart:convert';
+
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:gespco/src/services/signIn/signIn.dart';
 import 'package:gespco/src/shared/auth/auth_controller.dart';
-import 'package:gespco/src/shared/classes/dataUser.dart';
 import 'package:gespco/src/shared/environment/environment.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:logger/logger.dart';
+
+final auth = AuthController();
+final log = Logger();
+final date = DateTime.now();
+final management = Environment.adminUser;
+final moderator = Environment.moderators;
+const googleSignin = GoogleSignInScreen();
 
 class LoginController {
-  final authController = AuthController();
-  final googleSignin = const GoogleSignInScreen();
-
   String checkManagement(id) {
-    final management = Environment.adminUser;
+    List<dynamic> listModerator = jsonDecode(moderator);
 
-    if (kDebugMode) print("ESTO ES MANAGER: $management");
-    return "cabesa";
+    if (id != null && management != null) {
+      if (management == id) {
+        return "admin";
+      }
+      final exist = listModerator.where((element) => element == id);
+      return exist.isNotEmpty ? "moderator" : "client";
+    }
+    return "client";
+  }
+
+  void checkUser(context) async {
+    Navigator.popAndPushNamed(context, "/splash");
   }
 
   Future<void> signIn(BuildContext context) async {
-    GoogleSignIn _googleSignIn = GoogleSignIn(
+    GoogleSignIn googleSignIn = GoogleSignIn(
       scopes: [
         'email',
       ],
     );
 
-    final response = await _googleSignIn.signIn();
-    final user = UserModel(
-        name: response!.displayName!, photoURL: response.photoUrl, role: "");
-    if (context.mounted) authController.setUser(context, user);
-    // print("Loggin user success. ID: $response");
-    // TODO: CHECK USER Logger
-    // if (response.id) checkManagement();
+    final response = await googleSignIn.signIn();
+    GoogleSignInAuthentication googleSignInAuthentication =
+        await response!.authentication;
+    AuthCredential credential = GoogleAuthProvider.credential(
+        idToken: googleSignInAuthentication.idToken,
+        accessToken: googleSignInAuthentication.accessToken);
+
+    if (context.mounted) auth.loginUser(context, credential);
+    log.i("Inicio sesión $date, ${auth.user.id}");
+
+    checkManagement(auth.user.id);
   }
 
   Future<void> signOut(BuildContext context) async {
     await GoogleSignIn().signOut();
-    if (context.mounted) authController.signOut(context);
+    log.i("Cierre sesión: $date, ${auth.user.id}");
+    if (context.mounted) auth.signOut(context);
   }
 }

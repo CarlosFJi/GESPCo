@@ -34,13 +34,13 @@ class BarcodeController {
     try {
       final barcodes = await barcodeScanner.processImage(inputImage);
 
-      var barcode;
+      BarcodeValue? barcode;
       for (Barcode item in barcodes) {
         barcode = item.value;
       }
 
       if (barcode != null && status.barcode.isEmpty) {
-        status = GetBarcodeScanner.barcode(barcode);
+        status = GetBarcodeScanner.barcode(barcode.toString());
         cameraController!.dispose();
         await barcodeScanner.close();
       }

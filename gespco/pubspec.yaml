@@ -28,15 +28,17 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  googleapis: '>=3.0.0 <13.0.0'
+  logger: ^2.0.2+1
+  
   flutter:
     sdk: flutter
 
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
-  cupertino_icons: ^1.0.2
   google_fonts: ^6.1.0
-  firebase_core: ^2.24.2
+  firebase_core: ^2.18.0
   google_sign_in: ^6.1.6
   google_sign_in_web: ^0.12.1
   shared_preferences: ^2.2.2
@@ -45,18 +47,24 @@ dependencies:
   camera: ^0.10.5+5
   image_picker: ^1.0.4
   font_awesome_flutter: ^10.6.0
+  flutter_cupertino_date_picker_fork: 1.0.7
   flutter_masked_text2: ^0.9.1
   animated_card: ^2.0.0
-  firebase_auth: ^4.15.0
+  firebase_auth: ^4.10.1
   qr_flutter: ^4.1.0
-  modal_progress_hud_nsn: ^0.4.0
-  flutter_dotenv: ^5.1.0 
+  flutter_progress_hud: ^2.0.2
+  modal_progress_hud_nsn: ^0.5.0
+  flutter_dotenv: ^5.1.0
+  cloud_firestore: ^4.10.0
   dropdown_button2: ^2.3.9 
   sqflite: ^2.3.0
   sqflite_common_ffi: ^2.3.1
   sqflite_common_ffi_web: ^0.4.2+2
-  path: ^1.8.3
+  path: ^1.8.3 
   uuid: ^4.2.2
+  path_provider: ^2.1.2
+  googleapis_auth: ^1.0.0
+  firebase_performance: ^0.9.3+14
 
 dev_dependencies:
   flutter_test:
@@ -79,8 +87,13 @@ flutter:
   uses-material-design: true
 
   assets:
-    - .env.dev
+    - .env
+    - lib/assets/
     - lib/assets/images/
+    # - lib/assets/datasetAgenda.json
+    - lib/assets/google-services.json
+    - lib/assets/pubsub-services.json
+
 
   # To add custom fonts to your application, add a fonts section here,
   # in this "flutter" section. Each entry in this list should have a

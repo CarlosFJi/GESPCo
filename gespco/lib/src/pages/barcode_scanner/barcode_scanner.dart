@@ -67,8 +67,10 @@ class _BarcodeScannerState extends State<BarcodeScanner> {
                     "Escanée el código de barras",
                     style: FontStyles.buttonBackground,
                   ),
-                  leading: const BackButton(
+                  leading: BackButton(
                     color: ThemeColors.background,
+                    onPressed: () =>
+                        Navigator.pushReplacementNamed(context, "/home"),
                   ),
                 ),
                 body: Column(

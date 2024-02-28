@@ -5,7 +5,7 @@ import 'package:gespco/src/shared/themes/theme_colors.dart';
 import 'package:gespco/src/shared/widgets/ticket/ticket_controller.dart';
 
 class TicketInfoWidget extends StatefulWidget {
-  TicketInfoWidget({Key? key}) : super(key: key);
+  const TicketInfoWidget({Key? key}) : super(key: key);
 
   @override
   _InfoWidgetState createState() => _InfoWidgetState();
@@ -33,16 +33,21 @@ class _InfoWidgetState extends State<TicketInfoWidget> {
               ),
               ValueListenableBuilder<List<TicketModel>>(
                   valueListenable: controller.ticketNotifier,
-                  builder: (_, tickets, __) => Text.rich(TextSpan(
-                        text: "Tienes ",
-                        style: FontStyles.captionBackground,
-                        children: [
-                          TextSpan(
-                            text: "${tickets.length} tickets \n",
-                            style: FontStyles.captionBoldBackground,
-                          )
-                        ],
-                      )))
+                  builder: (_, tickets, __) => tickets.isNotEmpty
+                      ? Text.rich(TextSpan(
+                          text: "Tienes ",
+                          style: FontStyles.captionBackground,
+                          children: [
+                            TextSpan(
+                              text: "${tickets.length} tickets \n",
+                              style: FontStyles.captionBoldBackground,
+                            )
+                          ],
+                        ))
+                      : Text.rich(TextSpan(
+                          text: "Parece que no tienes tickets.",
+                          style: FontStyles.captionBackground,
+                        )))
             ],
           ),
         ),

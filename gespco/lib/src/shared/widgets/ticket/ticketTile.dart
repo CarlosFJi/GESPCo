@@ -17,15 +17,15 @@ class TicketTile extends StatelessWidget {
           style: FontStyles.titleListTile,
         ),
         subtitle: Text(
-          "Vence em ${data.dueDate}",
+          "Vence en: ${data.dueDate}",
           style: FontStyles.captionBody,
         ),
         trailing: Text.rich(TextSpan(
-          text: "R\$ ",
+          text: "€",
           style: FontStyles.trailingRegular,
           children: [
             TextSpan(
-              text: "${data.value!.toStringAsFixed(2)}",
+              text: data.value!.toStringAsFixed(2),
               style: FontStyles.trailingBold,
             ),
           ],
