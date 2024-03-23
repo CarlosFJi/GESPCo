@@ -4,7 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:gespco/src/pages/barcode_scanner/barcode_scanner.dart';
 import 'package:gespco/src/pages/event_list/events.dart';
 import 'package:gespco/src/pages/home/home_controller.dart';
+import 'package:gespco/src/pages/splash/splash.dart';
 import 'package:gespco/src/pages/tickets/tickets.dart';
+import 'package:gespco/src/pages/wip_build/wip_build.page.dart';
 import 'package:gespco/src/shared/classes/dataUser.dart';
 import 'package:gespco/src/shared/themes/font_style.dart';
 import 'package:gespco/src/shared/themes/theme_colors.dart';
@@ -19,21 +21,41 @@ class MyHomePage extends StatefulWidget {
   _HomePageState createState() => _HomePageState();
 }
 
-final List<String> items = ["Cerrar sesión"];
-final controller = HomeController();
-String? selectedValue;
-final pages = [
-  const EventPage(),
-  const CrearEventos(),
-  const BarcodeScanner(),
-  const TicketsPage()
-];
-
 class _HomePageState extends State<MyHomePage> {
+  final List<String> items = ["Cerrar sesión"];
+  final controller = HomeController();
+  String? selectedValue;
+  final eventPage = const EventPage();
+  final crearEventos = const CrearEventos();
+  final barcodeScannerPage = const BarcodeScanner();
+  final ticketPage = const TicketsPage();
+  var pages = [];
+
+  @override
+  void didUpdateWidget(MyHomePage oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    print('didUpdateWidget');
+  }
+
   @override
   Widget build(BuildContext context) {
-    if (context != null && widget != null && widget.user == null) {
-      controller.checkUser(context);
+    if (!widget.user!.role.isNaN) {
+      setState(() {
+        switch (widget.user!.role) {
+          case 0:
+            pages = [const EventPage(), const CrearEventos(), const WIPage()];
+            break;
+          case 1:
+            pages = [const EventPage(), const BarcodeScanner(), const WIPage()];
+            break;
+          case 2:
+            pages = [const TicketsPage(), const EventPage(), const WIPage()];
+            break;
+        }
+      });
+    }
+    if (widget.user == null) {
+      controller.checkUser(context, widget.user);
     }
 
     return Scaffold(
@@ -120,7 +142,9 @@ class _HomePageState extends State<MyHomePage> {
           children: [
             IconButton(
                 onPressed: () {
-                  controller.setPage(0);
+                  setState(() {
+                    controller.setPage(0);
+                  });
                 },
                 icon: Icon(
                   Icons.home,
@@ -130,7 +154,9 @@ class _HomePageState extends State<MyHomePage> {
                 )),
             GestureDetector(
               onTap: () async {
-                controller.setPage(1);
+                setState(() {
+                  controller.setPage(1);
+                });
               },
               child: Container(
                 width: 56,
@@ -162,3 +188,5 @@ class _HomePageState extends State<MyHomePage> {
     );
   }
 }
+
+class PagesAvailable {}

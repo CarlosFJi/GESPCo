@@ -20,7 +20,7 @@ class LoginController {
   String checkManagement(id) {
     List<dynamic> listModerator = jsonDecode(moderator);
 
-    if (id != null && management != null) {
+    if (id != null) {
       if (management == id) {
         return "admin";
       }

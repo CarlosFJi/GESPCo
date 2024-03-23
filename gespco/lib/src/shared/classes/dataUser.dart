@@ -8,7 +8,7 @@ class UserModel {
   final String? email;
   final String? name;
   final String? photoURL;
-  final int? role;
+  final int role;
   final String? metadata;
 
   UserModel(
@@ -16,7 +16,7 @@ class UserModel {
       this.email,
       this.name,
       this.photoURL,
-      this.role,
+      required this.role,
       this.metadata});
 
   static Map<String, dynamic> userToJson(UserModel data) => {

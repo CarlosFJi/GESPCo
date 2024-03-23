@@ -17,8 +17,10 @@ class HomeController {
     return auth.existUser();
   }
 
-  void checkUser(context) async {
-    auth.recoveryUser(context);
+  void checkUser(context, UserModel? user) async {
+    if (user == null) {
+      auth.recoveryUser(context);
+    }
   }
 
   String checkRole(id) {

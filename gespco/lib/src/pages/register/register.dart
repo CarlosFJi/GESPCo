@@ -1,6 +1,5 @@
 // ignore_for_file: library_private_types_in_public_api
 
-
 import 'package:flutter/material.dart';
 // import 'package:gespco/src/services/storage/firestore.dart';
 // import 'package:gespco/src/services/routes/serviceRoute.dart';
@@ -90,17 +89,17 @@ class _RegistrationScreenState extends State<Register> {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 verticalDirection: VerticalDirection.down,
                 children: [
-                  Positioned(
-                      top: size.height * 0.01,
-                      left: 0,
-                      right: 0,
-                      child: const SizedBox(
-                          width: 60,
-                          height: 80,
-                          child: FittedBox(
-                            fit: BoxFit.contain,
-                            child: Text("Registrate en GESPCO"),
-                          ))),
+                  const Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        SizedBox(
+                            width: 160,
+                            height: 120,
+                            child: FittedBox(
+                              fit: BoxFit.contain,
+                              child: Text("Registrate en GESPCO"),
+                            ))
+                      ]),
                   TextField(
                       keyboardType: TextInputType.emailAddress,
                       textAlign: TextAlign.center,

@@ -47,7 +47,7 @@ class AuthController {
     };
     // TODO: ENVIRONMENT TOPICS
     final messageId = await _pbService.publish("new_user", jsonEncode(dataBQ));
-    log.i("Nuevo registro: ${date}, ${dataBQ["userId"]}, $messageId");
+    log.i("Nuevo registro: $date, ${dataBQ["userId"]}, $messageId");
 
     print("MessageId Pub/Sub: $messageId");
   }
@@ -64,7 +64,7 @@ class AuthController {
       }
       final userData = newUser.user;
       final imageURL = userData!.photoURL;
-      log.i("Nuevo Registro: ${date}, ${userData}");
+      log.i("Nuevo Registro: $date, $userData");
       userFormat["id"] = userData.uid;
       userFormat["email"] = email;
       userFormat["name"] = email.split("@")[0];
@@ -114,14 +114,11 @@ class AuthController {
 
   Future<void> recoveryUser(context) async {
     final instance = await SharedPreferences.getInstance();
-    if (instance != null) {
-      final json = instance.get("user") as String;
-      if (json != null) {
-        setUser(context, UserModel.fromJson(json));
-      }
+    final json = instance.get("user") as String;
+    print('Recovery: $json');
+    setUser(context, UserModel.fromJson(json));
       return;
     }
-  }
 
   // Recupera el usuario desde la instancia en memoria
   void currentUser(BuildContext context) async {

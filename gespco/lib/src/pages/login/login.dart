@@ -19,6 +19,9 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    if (auth.existUser() != null) {
+      auth.currentUser(context);
+    }
 
     return Scaffold(
       backgroundColor: ThemeColors.background,
