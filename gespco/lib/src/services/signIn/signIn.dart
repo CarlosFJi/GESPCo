@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:gespco/src/shared/environment/environment.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -15,7 +16,9 @@ class _GoogleSignInScreenState extends State<GoogleSignInScreen> {
 
   Future<dynamic> signInWithGoogle() async {
     try {
-      final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+      final GoogleSignInAccount? googleUser = await GoogleSignIn(
+        clientId: Environment.googleClient,
+      ).signIn();
 
       final GoogleSignInAuthentication? googleAuth =
           await googleUser?.authentication;

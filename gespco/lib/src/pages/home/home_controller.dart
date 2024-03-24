@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:gespco/src/pages/login/login_controller.dart';
+import 'package:gespco/src/pages/wip_build/wip_build.page.dart';
 import 'package:gespco/src/shared/auth/auth_controller.dart';
 import 'package:gespco/src/shared/classes/dataUser.dart';
 
@@ -19,12 +20,9 @@ class HomeController {
 
   void checkUser(context, UserModel? user) async {
     if (user == null) {
-      auth.recoveryUser(context);
+      UserModel? user = await auth.recoveryUser(context);
+      print("checkUser: $user");
     }
-  }
-
-  String checkRole(id) {
-    return loginController.checkManagement(id);
   }
 
   Future<void> signOut(BuildContext context) async {

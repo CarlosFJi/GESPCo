@@ -1,6 +1,7 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:gespco/src/pages/barcode_scanner/barcode_controller.dart';
 import 'package:gespco/src/pages/barcode_scanner/barcode_scanner.dart';
 import 'package:gespco/src/pages/event_list/events.dart';
 import 'package:gespco/src/pages/home/home_controller.dart';
@@ -27,13 +28,14 @@ class _HomePageState extends State<MyHomePage> {
   String? selectedValue;
   final eventPage = const EventPage();
   final crearEventos = const CrearEventos();
-  final barcodeScannerPage = const BarcodeScanner();
+  final barcodeScannerCtrl = BarcodeController();
   final ticketPage = const TicketsPage();
   var pages = [];
 
   @override
   void didUpdateWidget(MyHomePage oldWidget) {
     super.didUpdateWidget(oldWidget);
+    barcodeScannerCtrl.dispose();
     print('didUpdateWidget');
   }
 
@@ -55,7 +57,8 @@ class _HomePageState extends State<MyHomePage> {
       });
     }
     if (widget.user == null) {
-      controller.checkUser(context, widget.user);
+      print("IYOO: ${widget.user}");
+      controller.checkUser(context, widget.user!);
     }
 
     return Scaffold(
@@ -145,6 +148,7 @@ class _HomePageState extends State<MyHomePage> {
                   setState(() {
                     controller.setPage(0);
                   });
+                  didUpdateWidget(widget);
                 },
                 icon: Icon(
                   Icons.home,

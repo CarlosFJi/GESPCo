@@ -41,7 +41,7 @@ class _RegistrationScreenState extends State<Register> {
 
   void registerUser(context) async {
     try {
-      controller.pathUser(context, email, password, true);
+      await controller.pathUser(context, email, password, true);
     } catch (e) {
       print("ERROR $e");
       showDialog(

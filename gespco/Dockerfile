@@ -10,17 +10,17 @@ RUN git clone https://github.com/flutter/flutter.git /usr/local/flutter
 ENV PATH="/usr/local/flutter/bin:/usr/local/flutter/bin/cache/dart-sdk/bin:${PATH}"
 
 RUN flutter doctor -v
-
 RUN flutter channel master
 RUN flutter upgrade
-RUN mkdir /app/
-COPY . /app/
 RUN flutter config --enable-web
 
+RUN mkdir /app/
+COPY . /app/
+
 # Stage 2
-FROM nginx:1.21.1-alpine
+FROM nginx:1.25.4-alpine
 
 
 COPY --from=build-env /app/build/web /usr/share/nginx/html
-EXPOSE 8080
+EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]
