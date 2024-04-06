@@ -17,6 +17,15 @@ final auth = AuthController();
 
 class _LoginPageState extends State<LoginPage> {
   @override
+  void dispose() {
+    // TODO: implement initState
+    super.dispose();
+    if (auth.existUser() != null) {
+      auth.currentUser(context);
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
 

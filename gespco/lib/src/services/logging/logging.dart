@@ -64,7 +64,7 @@ class GoogleCloudLoggingService {
       ..resource = resource
       ..severity = severityFromLevel
       ..labels = {
-        'project_id': Environment.project!,
+        'project_id': Environment.project,
         'level': level.name.toUpperCase(),
         'environment': env,
       };

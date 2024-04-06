@@ -7,6 +7,7 @@ import 'package:gespco/src/pages/home/home.dart';
 import 'package:gespco/src/pages/login/login.dart';
 import 'package:gespco/src/pages/register/register.dart';
 import 'package:gespco/src/pages/splash/splash.dart';
+import 'package:gespco/src/pages/wip_build/wip_build.page.dart';
 import 'package:gespco/src/shared/classes/dataUser.dart';
 import 'package:gespco/src/shared/themes/theme_colors.dart';
 
@@ -28,15 +29,15 @@ class App extends StatelessWidget {
           primarySwatch: Colors.indigo, primaryColor: ThemeColors.primary),
       initialRoute: "/splash",
       routes: {
-        "/splash": (context) => SplashPage(),
-        "/login": (context) => LoginPage(),
-        "/register": (context) => Register(),
+        "/splash": (context) => const SplashPage(),
         "/home": (context) => MyHomePage(
-              user: ModalRoute.of(context)!.settings.arguments as UserModel?,
-            ),
-        "/barcode_scanner": (context) => BarcodeScanner(),
-        "/eventos:": (context) => EventPage(),
-        "/crear_eventos": (context) => CrearEventos(),
+            user: ModalRoute.of(context)!.settings.arguments as UserModel),
+        "/login": (context) => const LoginPage(),
+        "/register": (context) => const Register(),
+        "/barcode_scanner": (context) => const BarcodeScanner(),
+        "/eventos:": (context) => const EventPage(),
+        "/crear_eventos": (context) => const CrearEventos(),
+        "/wip": (context) => const WIPage(),
       },
     );
   }

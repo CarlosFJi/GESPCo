@@ -40,15 +40,6 @@ class _crearEventoScreenState extends State<CrearEventos> {
   late String description;
   late String ciudadOrigin;
   late List longLat;
-/*
-    EventoId INT PRIMARY KEY,
-    NombreEvento VARCHAR(100) NOT NULL,
-    FechaEvento DATE NOT NULL,
-    Descripcion TEXT,
-    Ciudad TEXT
-    Long: DOUBLE
-    Lat: DOUBLE
-*/
   // TODO: Incluir datos de nuevo Evento
   DataEvent createNewEvent() {
     return {

@@ -57,9 +57,6 @@ dependencies:
   flutter_dotenv: ^5.1.0
   cloud_firestore: ^4.10.0
   dropdown_button2: ^2.3.9 
-  sqflite: ^2.3.0
-  sqflite_common_ffi: ^2.3.1
-  sqflite_common_ffi_web: ^0.4.2+2
   path: ^1.8.3 
   uuid: ^4.2.2
   path_provider: ^2.1.2
@@ -90,7 +87,6 @@ flutter:
     - .env
     - lib/assets/
     - lib/assets/images/
-    # - lib/assets/datasetAgenda.json
     - lib/assets/google-services.json
     - lib/assets/pubsub-services.json
 
