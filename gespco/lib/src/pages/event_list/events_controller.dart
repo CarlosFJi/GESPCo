@@ -4,6 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:gespco/src/services/readJson/readJson.dart';
 import 'package:gespco/src/shared/classes/dataEvent.dart';
 import 'package:flutter/services.dart';
+import 'package:gespco/src/shared/environment/environment.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class ControllerEvents {
@@ -11,7 +12,7 @@ class ControllerEvents {
   List<DataEvent> get event => eventNotifier.value;
   set events(List<DataEvent> value) => eventNotifier.value = value;
   final readJson = readingJson();
-  final listEvent = {"data": ""};
+  final env = Environment;
 
   ControllerEvents() {
     getEvents();
@@ -62,6 +63,7 @@ class ControllerEvents {
     return list;
   }
 
+  // Read files Json
   Future<Map<String, dynamic>> readEventsJson() async {
     Map<String, dynamic> jsonData =
         await loadJsonFromAssets('lib/assets/datasetAgenda.json');
@@ -74,8 +76,8 @@ class ControllerEvents {
   }
 
   Future<Map<String, dynamic>> readAccountJson() async {
-    Map<String, dynamic> jsonData =
-        await loadJsonFromAssets('lib/assets/pubsub-services.json');
+    final envPub = Environment.pubsubClient;
+    Map<String, dynamic> jsonData = await loadJsonFromAssets(envPub);
     return jsonData;
   }
 
