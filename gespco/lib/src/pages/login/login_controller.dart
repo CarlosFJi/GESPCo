@@ -41,6 +41,5 @@ class LoginController {
   Future<void> signOut(BuildContext context) async {
     await GoogleSignIn().signOut();
     log.i("Cierre sesión: $date, ${auth.user.id}");
-    if (context.mounted) auth.signOut(context);
   }
 }

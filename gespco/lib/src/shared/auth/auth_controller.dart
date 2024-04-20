@@ -172,7 +172,17 @@ class AuthController {
   }
 
   void signOut(context) async {
-    final instance = await SharedPreferences.getInstance();
+    LoginController().signOut(context);
+    cleanDataCached();
+    if (context.mounted) {
+      _user = null;
+      Navigator.pushReplacementNamed(context, "/login");
+    }
+  }
+
+  /*
+
+      final instance = await SharedPreferences.getInstance();
     instance.clear();
     try {
       _user = null;
@@ -181,5 +191,10 @@ class AuthController {
     } catch (e) {
       if (kDebugMode) print(e);
     }
+  */
+
+  void cleanDataCached() async {
+    final instance = await SharedPreferences.getInstance();
+    instance.clear();
   }
 }
