@@ -34,7 +34,7 @@ COPY pubspec.* /app/
 RUN flutter pub get
 COPY . /app
 RUN flutter pub upgrade web
-RUN flutter build web --no-tree-shake-icons --profile
+RUN flutter build web --profile --no-tree-shake-icons
 
 # Stage 2: Create the runtime environment with Apache
 FROM httpd:alpine

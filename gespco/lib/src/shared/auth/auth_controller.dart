@@ -61,18 +61,12 @@ class AuthController {
     final moderator = Environment.moderators;
     if (id != null) {
       print("checkManagement: $id");
-      if (management == id) {
+      if (management.split("\w+")[0] == id) {
         print('CHECK MANAGEMENT: adm');
         return RoleType.convertRole(RoleType.ADMIN);
       }
     }
-    /*
-    final exist = moderator.where((element) => element == id);
-    print('CHECK MANAGEMENT moderador: $exist');
-    return exist.isNotEmpty
-        ? RoleType.convertRole(RoleType.MODERATOR)
-        : RoleType.convertRole(RoleType.CLIENT);
-        */
+
     return RoleType.convertRole(RoleType.CLIENT);
   }
 
@@ -179,19 +173,6 @@ class AuthController {
       Navigator.pushReplacementNamed(context, "/login");
     }
   }
-
-  /*
-
-      final instance = await SharedPreferences.getInstance();
-    instance.clear();
-    try {
-      _user = null;
-      LoginController().signOut(context);
-      Navigator.pushReplacementNamed(context, "/login");
-    } catch (e) {
-      if (kDebugMode) print(e);
-    }
-  */
 
   void cleanDataCached() async {
     final instance = await SharedPreferences.getInstance();
