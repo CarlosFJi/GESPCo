@@ -67,7 +67,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '994700819032',
     projectId: 'gespco-cfj5b1',
     storageBucket: 'gespco-cfj5b1.appspot.com',
-    iosClientId: '994700819032-uqobun3d6oh5dcs0pka9ogufg3b6li01.apps.googleusercontent.com',
+    iosClientId:
+        '994700819032-uqobun3d6oh5dcs0pka9ogufg3b6li01.apps.googleusercontent.com',
     iosBundleId: 'com.example.gespco',
   );
 
@@ -77,7 +78,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '994700819032',
     projectId: 'gespco-cfj5b1',
     storageBucket: 'gespco-cfj5b1.appspot.com',
-    iosClientId: '994700819032-deone7p116lefpomnllmq0lv278gu5sg.apps.googleusercontent.com',
+    iosClientId:
+        '994700819032-deone7p116lefpomnllmq0lv278gu5sg.apps.googleusercontent.com',
     iosBundleId: 'com.example.gespco.RunnerTests',
   );
 }

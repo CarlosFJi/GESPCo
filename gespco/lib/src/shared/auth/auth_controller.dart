@@ -59,14 +59,14 @@ class AuthController {
   String checkManagement(String id) {
     final management = Environment.adminUser;
     final moderator = Environment.moderators;
+    final regexp = new RegExp(r'^[a-zA-Z0-9]+$');
     if (id != null) {
-      print("checkManagement: $id");
-      if (management.split("\w+")[0] == id) {
+      print("checkManagement: ${management.split(regexp)}");
+      if (management.split(regexp)[0] == id) {
         print('CHECK MANAGEMENT: adm');
         return RoleType.convertRole(RoleType.ADMIN);
       }
     }
-
     return RoleType.convertRole(RoleType.CLIENT);
   }
 
@@ -94,7 +94,7 @@ class AuthController {
       final currentUser = _auth.currentUser;
       final checkUser = checkManagement(currentUser!.uid);
 
-      userFormat["id"] = currentUser!.uid;
+      userFormat["id"] = currentUser.uid;
       userFormat["email"] = currentUser.email;
       userFormat["name"] = currentUser.displayName;
       userFormat["photoURL"] = currentUser.photoURL;
@@ -116,6 +116,7 @@ class AuthController {
       setUser(context, userLogged);
       log.i("Inicio sesión, ${userLogged.id}");
       if (isRegister == true) pubSubServiceWelcome(userLogged);
+      print("$userLogged");
       return userLogged;
     }
     return {} as UserModel;
