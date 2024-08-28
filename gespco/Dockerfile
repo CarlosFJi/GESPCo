@@ -24,7 +24,6 @@ RUN git -C /usr/local/flutter checkout 1f6bdb6
 # Verify Flutter installation
 RUN flutter doctor -v
 RUN flutter channel master
-RUN flutter upgrade
 RUN flutter config --enable-web
 
 # Set working directory
@@ -33,8 +32,8 @@ WORKDIR /app
 COPY pubspec.* /app/
 RUN flutter pub get
 COPY . /app
-RUN flutter pub upgrade web
-RUN flutter build web --no-tree-shake-icons --profile
+RUN flutter pub upgrade 
+RUN flutter build web --profile --no-tree-shake-icons
 
 # Stage 2: Create the runtime environment with Apache
 FROM httpd:alpine

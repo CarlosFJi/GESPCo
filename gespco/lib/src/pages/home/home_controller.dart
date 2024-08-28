@@ -26,6 +26,6 @@ class HomeController {
   }
 
   Future<void> signOut(BuildContext context) async {
-    await loginController.signOut(context);
+    auth.signOut(context);
   }
 }

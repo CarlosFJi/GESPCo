@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gespco-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: gespco-app
+  template:
+    metadata:
+      labels:
+        app: gespco-app
+    spec:
+      containers:
+        - name: app-container
+          image: nginx:latest
+          ports:
+            - containerPort: 80 

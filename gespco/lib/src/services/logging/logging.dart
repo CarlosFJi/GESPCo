@@ -37,7 +37,7 @@ class GoogleCloudLoggingService {
     }
 
     // Define environment and log name
-    const env = 'dev';
+    const env = !kDebugMode ? 'release' : 'dev';
     if (_projectId != "") {}
     final logName =
         'projects/$_projectId/logs/$env'; // It should in the format projects/[PROJECT_ID]/logs/[LOG_ID]

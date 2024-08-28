@@ -29,15 +29,16 @@ class ControllerEvents {
       DataEvent(
           title: "Evento2",
           id: "001",
-          description: "Sevilla acoge este nuevo evento...",
-          date: "11/04/2024",
+          description: "Cádiz acoge este nuevo evento...",
+          date: "30/06/2024",
           cost: "15"),
       DataEvent(
           title: "Evento3",
           id: "002",
-          description: "Sevilla acoge este nuevo evento...",
-          date: "12/04/2024",
-          cost: "5"),
+          description:
+              "Tenemos el placer de presentarle un gran espéctaculo en A Coruña",
+          date: "20/09/2024",
+          cost: "75"),
     ];
   }
 

@@ -20,25 +20,37 @@ Se hace uso de los siguientes servicios:
 # Scaffolding
     /lib
         /assets
+            /datasets
+            /images
         /src
             /pages
-                /barcode_scanner`´`
+                /barcode_scanner
                 /crear_eventos
                 /extract
                 /home
                 /login
+                /modal
                 /register
                 /splash
                 /tickets
+                /wip_build
             /services
-                /db
+                /logging
+                /providers
+                /pubSub
+                /readJson
+                /routes
                 /signIn
+                /storage
             /shared
                 /auth
                 /classes
+                /environment
                 /themes
                 /widgets
                     /buttons
+                    /camera
+                    /datetime
                     /ticket
     app.dart
     main.dart

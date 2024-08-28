@@ -59,20 +59,14 @@ class AuthController {
   String checkManagement(String id) {
     final management = Environment.adminUser;
     final moderator = Environment.moderators;
+    final regexp = new RegExp(r'^[a-zA-Z0-9]+$');
     if (id != null) {
-      print("checkManagement: $id");
-      if (management == id) {
+      print("checkManagement: ${management.split(regexp)}");
+      if (management.split(regexp)[0] == id) {
         print('CHECK MANAGEMENT: adm');
         return RoleType.convertRole(RoleType.ADMIN);
       }
     }
-    /*
-    final exist = moderator.where((element) => element == id);
-    print('CHECK MANAGEMENT moderador: $exist');
-    return exist.isNotEmpty
-        ? RoleType.convertRole(RoleType.MODERATOR)
-        : RoleType.convertRole(RoleType.CLIENT);
-        */
     return RoleType.convertRole(RoleType.CLIENT);
   }
 
@@ -100,7 +94,7 @@ class AuthController {
       final currentUser = _auth.currentUser;
       final checkUser = checkManagement(currentUser!.uid);
 
-      userFormat["id"] = currentUser!.uid;
+      userFormat["id"] = currentUser.uid;
       userFormat["email"] = currentUser.email;
       userFormat["name"] = currentUser.displayName;
       userFormat["photoURL"] = currentUser.photoURL;
@@ -122,6 +116,7 @@ class AuthController {
       setUser(context, userLogged);
       log.i("Inicio sesión, ${userLogged.id}");
       if (isRegister == true) pubSubServiceWelcome(userLogged);
+      print("$userLogged");
       return userLogged;
     }
     return {} as UserModel;
@@ -172,14 +167,16 @@ class AuthController {
   }
 
   void signOut(context) async {
+    LoginController().signOut(context);
+    cleanDataCached();
+    if (context.mounted) {
+      _user = null;
+      Navigator.pushReplacementNamed(context, "/login");
+    }
+  }
+
+  void cleanDataCached() async {
     final instance = await SharedPreferences.getInstance();
     instance.clear();
-    try {
-      _user = null;
-      LoginController().signOut(context);
-      Navigator.pushReplacementNamed(context, "/login");
-    } catch (e) {
-      if (kDebugMode) print(e);
-    }
   }
 }
