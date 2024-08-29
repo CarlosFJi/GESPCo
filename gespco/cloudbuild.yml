@@ -27,7 +27,7 @@ steps:
 
   # Step 1: Build the Docker image
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'gespco/v1', '.', 'run', '--rm', '-v', '/workspace:/app', 'cirrusci/flutter:stable', '/bin/bash', '-c', 'cd /app && flutter build web --release']
+    args: ['run', '--rm', '-v', '/workspace:/app', 'cirrusci/flutter:stable', '/bin/bash', '-c', 'cd /app']
 
   # Step 3: Deploy to Firebase Hosting
   - name: 'bash'
