@@ -34,13 +34,11 @@ steps:
     args: ['push', 'gcr.io/gespco-cfj5b1/repo-gespco']
 
   # Step 3: Deploy to Firebase Hosting
-  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
-    entrypoint: 'bash'
-    args:
-      - '-c'
-      - |
-        curl -sL https://firebase.tools | bash
-        firebase deploy --project=gespco-cfj5b1 --only hosting
+  - name: 'bash'
+    args: ['./start-apache.bash']
+
+options:
+  logging: CLOUD_LOGGING_ONLY
 
 images:
   - 'gcr.io/gespco-cfj5b1/repo-gespco'
