@@ -48,6 +48,6 @@ app.*.map.json
 /macos/
 /windows/
 /ios/
-*.env
+
 so
 # Firebase Options
