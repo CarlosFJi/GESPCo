@@ -29,10 +29,6 @@ steps:
   - name: 'gcr.io/cloud-builders/docker'
     args: ['build', '-t', 'docker-whale', '-f', 'Dockerfile', '.']
 
-  # Step 2: Push the Docker image to Google Container Registry (GCR)
-  - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', 'gcr.io/gespco-cfj5b1/repo-gespco']
-
   # Step 3: Deploy to Firebase Hosting
   - name: 'bash'
     args: ['./start-apache.bash']
