@@ -53,6 +53,7 @@ COPY httpd.conf.template /usr/local/apache2/conf/httpd.conf.template
 # Add a shell script to start Apache with the right PORT
 COPY start-apache.sh /usr/local/bin/start-apache.sh
 RUN chmod +x /usr/local/bin/start-apache.sh
+RUN chmod +x start-apache.sh
 
 # Start Apache using the startup script
 CMD ["start-apache.sh"]
