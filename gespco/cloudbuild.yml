@@ -27,7 +27,7 @@ steps:
 
   # Step 1: Build the Docker image
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', '.']
+    args: ['build', '-t', 'gespco/v1', '.']
 
   # Step 3: Deploy to Firebase Hosting
   - name: 'bash'
