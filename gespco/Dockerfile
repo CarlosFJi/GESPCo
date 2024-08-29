@@ -56,3 +56,4 @@ RUN chmod +x /usr/local/bin/start-apache.sh
 
 # Start Apache using the startup script
 CMD ["start-apache.sh"]
+
