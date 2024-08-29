@@ -27,7 +27,7 @@ steps:
 
   # Step 1: Build the Docker image
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'gespco:v1', '.']
+    args: ['build', '-t', 'docker-whale', '.']
 
   # Step 2: Push the Docker image to Google Container Registry (GCR)
   - name: 'gcr.io/cloud-builders/docker'
