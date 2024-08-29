@@ -26,8 +26,8 @@ steps:
     dir: '/workspace'
 
   # Step 1: Build the Docker image
-  - name: 'gcr.io/gespco-cfj5b1/repo-gespco'
-    args: ['build', '-t', 'carlosfierro/gespco', '.']
+  - name: 'gcr.io/$PROJECT_ID/docker'
+    args: ['build', '-t', 'carlosfierro/gespco:latest', '.']
 
   # Step 3: Deploy to Firebase Hosting
   - name: 'bash'
