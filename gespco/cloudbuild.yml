@@ -41,18 +41,10 @@ steps:
 
   # Step 2: Deploy to Firebase Hosting
   - name: 'gcr.io/$PROJECT_ID/firebase'
-    args: ['deploy --token=$FIREBASE_TOKEN']
+    args: ['deploy --only=hosting']
   # This is only necessary if using the token authentication method
 
 options:
   logging: CLOUD_LOGGING_ONLY
 
-secrets:
-  - kmsKeyName: 'projects/gespco-cfj5b1/locations/global/keyRings/cloudbuilder/cryptoKeys/firebase-token'
-    secretEnv:
-      FIREBASE_TOKEN: 'CiQAwb9ZnZFM4FoWbO+MVf0EUe9RjPRcxiiCz4W6dt4Edo9LmvUSkAEA6gsnHUKbg86WNDIOP3F6qy0l1cfBI0oQjD0MhQaLMMFooGYFBs5aQbNrmZvrwOtHZHs3ZS5+1Fc1KBzQKfi7pCaWpJxVpGoz5JrWStKykptaL8jGCzHB6zYzxsEzQCc1wX6oekBWnCFl+AeFcosasQZQ53lnnu8g2JdIwzGwGlDcIjmgCjzo8Y+HFZVB9zk='
- 
-
 timeout: '1200s'
-images:
-  - 'gcr.io/gespco-cfj5b1/repo-gespco'
