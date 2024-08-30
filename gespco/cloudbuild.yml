@@ -36,7 +36,6 @@ steps:
 # To run flutter build apk, one must need to  be at the root of the project, the script simply cd to the root before
 # running the build command
   - name: 'gcr.io/$PROJECT_ID/flutter'
-    entrypoint: '/bin/bash'
     args: ['cd /workspace/flutter/ && flutter build web --profile --no-tree-shake-icons']
 
 # apk artifacts can be pushed to a GCS bucket like this
