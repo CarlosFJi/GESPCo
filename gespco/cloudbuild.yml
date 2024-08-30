@@ -1,39 +1,13 @@
-
-# In this directory, run the following command to build this builder.
-# $ gcloud builds submit . --config=cloudbuild.yaml
-
-#steps:
-#- name: 'gcr.io/cloud-builders/git'
-#  args: ['clone', 'https://github.com/flutter/flutter']
-#  dir: '/workspace'
-
-# To run flutter build apk, one must need to  be at the root of the project, the script simply cd to the root before
-# running the build command
-#- name: 'gcr.io/gespco-cfj5b/repo-gespco'
-#  entrypoint: '/bin/bash'
-#  args: ['build. sh']
-
-# apk artifacts can be pushed to a GCS bucket like this
-# - name: 'gcr.io/cloud-builders/gsutil'
-#   args: ['cp', '/workspace/flutter/examples/hello_world/build/app/outputs/apk/release/app-release.apk', 'gs://$MY_BUCKET/hello_world.apk']
-
-#tags: ['cloud-builders-community']
-
 steps:
-  # Step 0: Flutter install git
-  - name: 'gcr.io/$PROJECT_ID/flutter:stable'    
-    args: ['build', 'web']  
-
-  - name: gcr.io/google.com/cloudsdktool/cloud-sdk    
+  - name: 'gcr.io/$PROJECT_ID/flutter:stable'
+    args: ['build', 'web']
+  - name: gcr.io/google.com/cloudsdktool/cloud-sdk
     args:
-          - '-c'
-          - cp app.yaml build/web && cd build/web && gcloud config set app/cloud_build_timeout 1600    
+      - '-c'
+      - cp app.yaml build/web && cd build/web && gcloud config set app/cloud_build_timeout 1600 && gcloud app deploy
     entrypoint: bash
-    timeout: 1600s
-  # This is only necessary if using the token authentication method
+timeout: 1600s
 
 options:
   logging: CLOUD_LOGGING_ONLY
-
-timeout: '1200s'
 
