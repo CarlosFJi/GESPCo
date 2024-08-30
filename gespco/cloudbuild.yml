@@ -25,16 +25,18 @@ steps:
 #    args: ['clone', 'https://github.com/flutter/flutter']
 #    dir: '/workspace'
   - name: 'gcr.io/cloud-builders/git'
-    args: ['clone', 'https://github.com/flutter/flutter']
-    dir: '/workspace'
-
-  - name: 'gcr.io/cloud-builders/git'
     args: ['clone', 'https://github.com/CarlosFJi/GESPCo']
     dir: '/gespco'    
   
+  - name: 'gcr.io/cloud-builders/git'
+    args: ['clone', 'https://github.com/flutter/flutter']
+    dir: '/workspace'
+
+# To run flutter build apk, one must need to  be at the root of the project, the script simply cd to the root before
+# running the build command
   - name: 'gcr.io/$PROJECT_ID/flutter'
     entrypoint: '/bin/bash'
-    args: ['cloudbuild.sh', 'gespco']
+    args: ['build.sh']
 
   - name: 'gcr.io/cloud-builders/firebase'
     args: ['login']
