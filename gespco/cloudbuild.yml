@@ -20,22 +20,28 @@
 #tags: ['cloud-builders-community']
 
 steps:
-  # Step 0: Flutter install
-  - name: 'gcr.io/cloud-builders/git'
-    args: ['clone', 'https://github.com/flutter/flutter']
-    dir: '/workspace'
+  # Step 0: Flutter install git
+#  - name: 'gcr.io/cloud-builders/git'
+#    args: ['clone', 'https://github.com/flutter/flutter']
+#    dir: '/workspace'
 
   - name: 'gcr.io/cloud-builders/git'
     args: ['clone', 'https://github.com/CarlosFJi/GESPCo']
     dir: '/gespco'  
 
-  # Step 1: Build the Docker image
+  - name: 'gcr.io/$PROJECT_ID/flutter'
+    entrypoint: '/bin/bash'
+    args: ['build web --profile --no-tree-shake-icons']
+
   - name: 'gcr.io/gespco-cfj5b1/firebase'
-    args: ['projects:list']
+    args: ['login']
+
+  - name: 'gcr.io/$PROJECT_ID/firebase'
+    args: ['init hosting']
 
   # Step 2: Deploy to Firebase Hosting
   - name: 'gcr.io/$PROJECT_ID/firebase'
-    args: ['projects:list', 'firebase deploy --token=$FIREBASE_TOKEN']
+    args: ['firebase deploy --token=$FIREBASE_TOKEN']
   # This is only necessary if using the token authentication method
 
 options:
