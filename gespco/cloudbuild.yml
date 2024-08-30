@@ -29,11 +29,9 @@ steps:
   - name: 'gcr.io/cloud-builders/docker'
     args: ['run', '--rm', '-v', '/workspace:/app', 'cirrusci/flutter:stable', '/bin/bash', '-c', 'cd /app', 'start-apache.sh']
  
-
   # Step 2: Deploy to Firebase Hosting
-  - name: "gcr.io/cloud-builders/firebase"
-    args: ["deploy"]
-
+  - name: 'gcr.io/cloud-builders/firebase'
+    args: ['deploy', '--only-hosting']
 
 options:
   logging: CLOUD_LOGGING_ONLY
