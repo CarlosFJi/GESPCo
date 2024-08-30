@@ -31,7 +31,7 @@ steps:
   - name: 'gcr.io/cloud-builders/git'
     args: ['clone', 'https://github.com/CarlosFJi/GESPCo', 'flutter build web']
   
-  - name: 'gcr.io/$PROJECT_ID/GESPCo'
+  - name: 'gcr.io/$PROJECT_ID/app'
     entrypoint: '/bin/bash'
     dir: '/gespco'
     args: ['cloudbuild.sh']  
