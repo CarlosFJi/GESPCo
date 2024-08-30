@@ -41,7 +41,7 @@ steps:
 
   # Step 2: Deploy to Firebase Hosting
   - name: 'gcr.io/$PROJECT_ID/firebase'
-    args: ['firebase deploy --token=$FIREBASE_TOKEN']
+    args: ['deploy --token=$FIREBASE_TOKEN']
   # This is only necessary if using the token authentication method
 
 options:
