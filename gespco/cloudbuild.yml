@@ -29,18 +29,18 @@ steps:
     args: ['clone', 'https://github.com/CarlosFJi/GESPCo']
     dir: '/gespco'  
 
-  - name: 'gcr.io/$PROJECT_ID/flutter'
+  - name: 'gcr.io/cloud-builders//flutter'
     entrypoint: '/bin/bash'
     args: ['build web --profile --no-tree-shake-icons']
 
-  - name: 'gcr.io/gespco-cfj5b1/firebase'
+  - name: 'gcr.io/cloud-builders//firebase'
     args: ['login']
 
-  - name: 'gcr.io/$PROJECT_ID/firebase'
+  - name: 'gcr.io/cloud-builders//firebase'
     args: ['init hosting']
 
   # Step 2: Deploy to Firebase Hosting
-  - name: 'gcr.io/$PROJECT_ID/firebase'
+  - name: 'gcr.io/cloud-builders/firebase'
     args: ['deploy --only=hosting']
   # This is only necessary if using the token authentication method
 
