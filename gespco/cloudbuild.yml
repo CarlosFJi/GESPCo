@@ -29,7 +29,8 @@ steps:
     - 'repo-gespco'
     - '--image'
     - 'gcr.io/$PROJECT_ID/repo-gespco:latest'
-  
+    - '--region'
+    - 'europe-west1-b'
 options:
     logging: CLOUD_LOGGING_ONLY
 
