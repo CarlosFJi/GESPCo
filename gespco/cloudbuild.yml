@@ -1,10 +1,10 @@
   steps:
   # Build the container image
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'gcr.io/$PROJECT_ID/repo-gespco:$COMMIT_SHA', '.']
+    args: ['build', '-t', 'gcr.io/$PROJECT_ID/repo-gespco:latest', '.']
   # Push the container image to Container Registry
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', 'gcr.io/$PROJECT_ID/repo-gespco:$COMMIT_SHA']
+    args: ['push', 'gcr.io/$PROJECT_ID/repo-gespco:latest']
   # Deploy container image to Cloud Run
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     entrypoint: gcloud
@@ -13,8 +13,6 @@
     - 'deploy'
     - 'repo-gespco'
     - '--image'
-    - 'gcr.io/$PROJECT_ID/repo-gespco:$COMMIT_SHA'
-    - '--region'
-    - 'europe-west1'
+    - 'gcr.io/$PROJECT_ID/repo-gespco:latest'
   images:
-  - 'gcr.io/$PROJECT_ID/repo-gespco:$COMMIT_SHA'
+  - 'gcr.io/$PROJECT_ID/repo-gespco:latest'
