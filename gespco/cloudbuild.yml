@@ -30,7 +30,7 @@ steps:
     dir: '/gespco'  
 
   - name: 'gcr.io/cloud-builders/git'
-    args: ['clone', 'https://github.com/flutter/flutter', 'cd /workspace/flutter/', 'flutter build web --profile --no-tree-shake-icons']
+    args: ['clone', 'https://github.com/flutter/flutter', 'flutter', 'build web --profile --no-tree-shake-icons']
     dir: '/workspace'
 
 
