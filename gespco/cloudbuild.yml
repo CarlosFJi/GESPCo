@@ -22,10 +22,10 @@
 steps:
   # Deploy container image to Cloud Run
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
-    entrypoint: gcloud
+    entrypoint: flutter
     args:
-    - 'run'
-    - 'deploy'
+    - 'build web --profile --no-tree-shakes-icons'
+    - 'deploy --only=hosting'
     - 'repo-gespco'
     - '--image'
     - 'gcr.io/$PROJECT_ID/repo-gespco:latest'
