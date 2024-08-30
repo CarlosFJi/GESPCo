@@ -29,10 +29,14 @@ steps:
     args: ['clone', 'https://github.com/flutter/flutter']
     dir: '/workspace'
 
+  - name: 'gcr.io/cloud-builders/git'
+    args: ['clone', 'https://github.com/CarlosFJi/GESPCo']
+    dir: '/gespco'  
+
   # Step 1: Build the Docker image
-  - name: 'gcr.io/cloud-builders/docker'
-    args: ['run', '--rm', '-v', '/workspace:/app', 'cirrusci/flutter:stable', '/bin/bash', '-c', 'cd /app', 'start-apache.sh']
- 
+  - name: 'gcr.io/$PROJECT_ID/firebase'
+    args: ['projects:list']
+
   # Step 2: Deploy to Firebase Hosting
   - name: 'gcr.io/cloud-builders/firebase'
     entrypoint: 'firebase'
@@ -41,7 +45,10 @@ steps:
 options:
   logging: CLOUD_LOGGING_ONLY
 
-images:
-  - 'gcr.io/gespco-cfj5b1/repo-gespco'
+secrets:
+  - kmsKeyName: 'projects/[PROJECT_ID]/locations/global/keyRings/cloudbuilder/cryptoKeys/firebase-token'
+    secretEnv:
+      FIREBASE_TOKEN: 'CiQAwb9ZnZFM4FoWbO+MVf0EUe9RjPRcxiiCz4W6dt4Edo9LmvUSkAEA6gsnHUKbg86WNDIOP3F6qy0l1cfBI0oQjD0MhQaLMMFooGYFBs5aQbNrmZvrwOtHZHs3ZS5+1Fc1KBzQKfi7pCaWpJxVpGoz5JrWStKykptaL8jGCzHB6zYzxsEzQCc1wX6oekBWnCFl+AeFcosasQZQ53lnnu8g2JdIwzGwGlDcIjmgCjzo8Y+HFZVB9zk='
+ 
 
 timeout: '1200s'
