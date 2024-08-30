@@ -30,8 +30,10 @@ steps:
     args: ['run', '--rm', '-v', '/workspace:/app', 'cirrusci/flutter:stable', '/bin/bash', '-c', 'cd /app', 'start-apache.sh']
  
   # Step 2: Deploy to Firebase Hosting
-  - name: 'gcr.io/cloud-builders/firebase'
-    args: ['deploy', '--only-hosting']
+  - name: 'gcr.io/$PROJECT_ID/firebase'
+    args: ['deploy', '--only', 'hosting', '--project=gespco-cfj5b1']
+    secretEnv: ['FIREBASE_TOKEN']
+# 
 
 options:
   logging: CLOUD_LOGGING_ONLY
