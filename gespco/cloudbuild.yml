@@ -34,9 +34,9 @@ steps:
     args: ['run', '--rm', '-v', '/workspace:/app', 'cirrusci/flutter:stable', '/bin/bash', '-c', 'cd /app', 'start-apache.sh']
  
   # Step 2: Deploy to Firebase Hosting
-  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
-    entrypoint: 'bash'
-    args: ['-c', 'firebase deploy --only=hosting',' --token=$FIREBASE_TOKEN']
+  - name: 'gcr.io/cloud-builders/firebase'
+    entrypoint: 'firebase'
+    args: ['-c', 'firebase deploy --token=$FIREBASE_TOKEN']
 
 options:
   logging: CLOUD_LOGGING_ONLY
