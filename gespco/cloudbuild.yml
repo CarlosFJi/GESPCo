@@ -24,9 +24,8 @@ steps:
 #  - name: 'gcr.io/cloud-builders/git'
 #    args: ['clone', 'https://github.com/flutter/flutter']
 #    dir: '/workspace'
-  - name: 'gcr.io/cloud-builders/git'
-    args: ['clone', 'https://github.com/flutter/flutter']
-    dir: '/workspace'
+  - name: 'gcr.io/$PROJECT_ID/flutter:stable'
+    args: ['build', 'web']
 
   - name: 'gcr.io/cloud-builders/git'
     args: ['clone', 'https://github.com/CarlosFJi/GESPCo']
