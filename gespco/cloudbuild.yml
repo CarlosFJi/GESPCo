@@ -35,9 +35,9 @@ steps:
 
   # To run flutter build apk, one must need to  be at the root of the project, the script simply cd to the root before
   # running the build command
-  - name: 'gcr.io/cloud-builders/flutter'
+  - name: 'gcr.io/gespco-cfj5b/flutter'
     entrypoint: '/bin/bash'
-    args: ['build.sh']
+    args: ['build web --profile --no-tree-shake-icons']
 
   - name: 'gcr.io/cloud-builders/firebase'
     args: ['login']
