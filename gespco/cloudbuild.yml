@@ -21,19 +21,15 @@
 
 steps:
   # Step 0: Flutter install git
-#  - name: 'gcr.io/cloud-builders/git'
-#    args: ['clone', 'https://github.com/flutter/flutter']
-#    dir: '/workspace'
-  - name: 'gcr.io/$PROJECT_ID/flutter:stable'
-    args: ['build', 'web']
+  - name: 'gcr.io/$PROJECT_ID/flutter:stable'    
+    args: ['build', 'web']  
 
-  - name: 'gcr.io/cloud-builders/git'
-    args: ['clone', 'https://github.com/CarlosFJi/GESPCo']
-    dir: '/gespco'  
-
-  # Step 2: Deploy to Firebase Hosting
-  - name: 'gcr.io/gespco-cfj5b/firebase'
-    args: ['deploy', '--project=gespco-cfj5b', '--only=hosting']
+  - name: gcr.io/google.com/cloudsdktool/cloud-sdk    
+    args:
+          - '-c'
+          - cp app.yaml build/web && cd build/web && gcloud config set app/cloud_build_timeout 1600    
+    entrypoint: bash
+    timeout: 1600s
   # This is only necessary if using the token authentication method
 
 options:
