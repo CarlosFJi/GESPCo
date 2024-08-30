@@ -29,7 +29,7 @@ steps:
     dir: '/workspace'
 
   - name: 'gcr.io/cloud-builders/git'
-    args: ['clone', 'https://github.com/CarlosFJi/GESPCo', 'flutter build web']
+    args: ['clone', 'https://github.com/CarlosFJi/GESPCo']
   
   - name: 'gcr.io/$PROJECT_ID/app'
     entrypoint: '/bin/bash'
