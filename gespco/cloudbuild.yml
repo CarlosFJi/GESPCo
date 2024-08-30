@@ -32,7 +32,7 @@ steps:
     args: ['clone', 'https://github.com/CarlosFJi/GESPCo']
     dir: '/gespco'
 
-  - name: 'gcr.io/gespco-cfj5b/GESPCo'
+  - name: 'gcr.io/gespco-cfj5b/gespco'
     args: ['flutter pub get && flutter build web --profile --no-tree-shake-icons']
     dir: '/gespco'    
 
