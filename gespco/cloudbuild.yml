@@ -30,13 +30,10 @@ steps:
     dir: '/gespco'  
 
   - name: 'gcr.io/cloud-builders/git'
-    args: ['clone', 'https://github.com/flutter/flutter']
+    args: ['clone', 'https://github.com/flutter/flutter', 'cd /workspace/flutter/ && flutter build web --profile --no-tree-shake-icons']
     dir: '/workspace'
 
-# To run flutter build apk, one must need to  be at the root of the project, the script simply cd to the root before
-# running the build command
-  - name: 'gcr.io/cloud-builders/flutter'
-    args: ['cd /workspace/flutter/ && flutter build web --profile --no-tree-shake-icons']
+
 
 # apk artifacts can be pushed to a GCS bucket like this
 # - name: 'gcr.io/cloud-builders/gsutil'
