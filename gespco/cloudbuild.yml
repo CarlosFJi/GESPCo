@@ -30,8 +30,9 @@ steps:
     args: ['run', '--rm', '-v', '/workspace:/app', 'cirrusci/flutter:stable', '/bin/bash', '-c', 'cd /app', 'start-apache.sh']
  
   # Step 2: Deploy to Firebase Hosting
-  - name: 'gcr.io/$PROJECT_ID/firebase'
-    args: ['deploy', '--only', 'hosting', '--project=gespco-cfj5b1']
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: 'bash'
+    args: ['-c', 'npm install -g firebase-tools && firebase deploy --token=$FIREBASE_TOKEN']
     secretEnv: ['FIREBASE_TOKEN']
 # 
 
