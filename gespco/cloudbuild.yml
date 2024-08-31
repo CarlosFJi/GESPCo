@@ -29,7 +29,7 @@ steps:
     dir: '/gespco'
 
   - name: 'gcr.io/gespco-cfj5b1/flutter'
-    args: ['flutter pub get && flutter build web --profile --no-tree-shake-icons']   
+    args: ['pub get', 'build web --profile --no-tree-shake-icons']   
 
   # Step 2: Deploy to Firebase Hosting
   - name: 'gcr.io/gespco-cfj5b1/firebase'
