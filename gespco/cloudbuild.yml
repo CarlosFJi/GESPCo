@@ -28,8 +28,9 @@ steps:
     args: ['clone', 'https://github.com/CarlosFJi/GESPCo']
     dir: '/gespco'
 
-  - name: 'gcr.io/gespco-cfj5b1/flutter'
-    args: ['pub get', 'build web --profile --no-tree-shake-icons']   
+  - name: 'gcr.io/$PROJECT_ID/flutter'
+    entrypoint: '/bin/bash'
+    args: ['cloudbuild.sh'] 
 
   # Step 2: Deploy to Firebase Hosting
   - name: 'gcr.io/gespco-cfj5b1/firebase'
