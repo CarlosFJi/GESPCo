@@ -1,0 +1,4 @@
+ steps:
+      - name: gcr.io/gespco-cfj5b1/firebase
+        args: ['deploy', '--project=gespco-cfj5b1', '--only=hosting']
+

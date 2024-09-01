@@ -1,0 +1,25 @@
+steps:
+  # Clone the repo
+  - name: 'gcr.io/cloud-builders/git'
+    args: ['clone', 'https://github.com/CarlosFJi/GESPCo']
+    dir: 'gespco'
+
+  # Build
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    id: 'Build Flutter'
+    entrypoint: 'bash'
+    args:
+      - '-c'
+      - |
+        cd flutter
+        gcloud builds submit . --config=cloudbuild.yaml
+  
+  # Trying to build in a different way   
+  - name: 'gcr.io/gespco-cfj5b1/firebase'
+    args: ['deploy', '--project=gespco-cfj5b1', '--only=hosting']
+
+options:
+  logging: CLOUD_LOGGING_ONLY
+
+timeout: '1200s'
+
